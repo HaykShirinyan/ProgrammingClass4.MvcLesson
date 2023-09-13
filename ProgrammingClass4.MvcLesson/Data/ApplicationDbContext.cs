@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ProgrammingClass4.MvcLesson.Controllers;
 using ProgrammingClass4.MvcLesson.Models;
 
 namespace ProgrammingClass4.MvcLesson.Data
@@ -13,6 +14,11 @@ namespace ProgrammingClass4.MvcLesson.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+        }
+
+        public static implicit operator ApplicationDbContext(ProductTypeController1 v)
+        {
+            throw new NotImplementedException();
         }
     }
 }
