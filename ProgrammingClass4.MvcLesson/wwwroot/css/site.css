@@ -4,7 +4,7 @@ html {
 
 @media (min-width: 768px) {
   html {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
@@ -19,4 +19,235 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+
+.top-navigation {
+  justify-content:center;
+  list-style: none;
+  display: flex;
+  background-color: #130bf5;
+  padding: 20px;
+}
+   
+.top-navigation a {
+  text-decoration: none;
+  color: #e1d6cf;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.aboutus-text {
+  text-align: center;
+  background-color: #1a1818;
+  color: #ebe4e4;
+  width:1350px;
+  margin-left:10px;
+  margin-right:10px;
+}
+
+.about-text {
+  margin: 20px;
+  border: 1px solid;
+  padding: 20px;
+  background-color: #040303;
+  color: #f5efef;
+  margin-left:70px;
+ 
+}
+
+.cooking-pictures {
+  margin: 40px;
+  display: flex;
+  padding:5px;
+ 
+}
+
+.contuct-text {
+  text-align: center;
+  background-color: #14144a;
+  color: #ebe4e4;
+}
+
+.contuct-us {
+  margin: 20px;
+  border: 1px solid;
+  padding: 20px;
+  background-color: #14144a;
+  color: #f5efef;
+  text-align: center;
+}
+
+.contuct-list {
+  list-style: none;
+  display: flex;
+  margin: 50px;
+}
+
+.contuct-list h3{
+  text-align: center;
+  margin:3px;
+}
+
+.contuct-list p {
+  text-align: center;
+  margin:5px;
+}
+
+.contuct-picture{
+  width:1200px;
+  height:500px;
+  margin-left:40px;
+}
+
+.menu {
+  text-align: center;
+  background-color: #14144a;
+  color: #ebe4e4;
+}
+.menu-list {
+  list-style: none;
+  display: flex;
+  margin: 30px;
+}
+
+.menu-list h3 {
+  text-align: center;
+}
+
+ .menu-list p {
+  text-align: center;
+  padding: 3px;
+  background-color: #291e1e;
+  color: white;
+
+ }
+
+.menu-list2 {
+  list-style: none;
+  display: flex;
+ 
+}
+
+.menu-list2 h3 {
+  text-align:center;
+}
+
+.menu-list2 p {
+   text-align: center;
+   padding: 3px;
+   background-color: #291e1e;
+   color: white;
+
+}
+
+.menu-list3 {
+   list-style: none;
+   display: flex;
+}
+
+.menu-list3 h3 {
+  text-align:center;
+
+}
+
+.menu-list3 p {
+   text-align: center;
+   padding: 3px;
+   background-color: #291e1e;
+   color: white;
+}
+
+.menu-picture1{
+   width:360px;
+   height:400px;
+}
+
+.menu-picture2{
+   width:400px;
+}    
+
+.menu-picture3{
+   width:500px;
+   height:400px;
+        
+}
+
+.menu-picture4{
+   width:400px;
+   height:400px;
+   
+}
+
+.menu-picture5{
+   width:600px;
+   
+}
+
+.menu-picture6{
+   width:500px;
+   height:400px;
+   
+}
+
+.menu-picture7{
+   width:450px;
+}
+
+.menu-picture8{
+   width:500px;
+}
+
+.menu-picture9{
+   width:500px;
+}
+
+.about-picture1{
+   width:700px;
+}
+
+.about-picture2{
+   width:650px;
+}
+
+.welcome-text {
+   margin: 20px;
+   border: 1px solid;
+   padding: 20px;
+   background-color: #253742;
+   color: #f1e9e9;
+   margin-left:50px;
+}
+
+
+.image-pictures {
+   text-align: center;
+   margin: 40px;
+}
+
+.introduction-text {
+   text-align: center;
+   background-color: #0c2637;
+   color: #ded0d0;
+   margin:10px;
+   margin-left:40px;
+}
+
+.home-picture1{
+    width:1400px;
+}
+
+.home-picture2{
+    width:500px;
+}
+
+.home-picture3{
+    width:500px;
+}
+
+.home-picture4{
+    width:500px;
+}
+
+.home-picture5{
+    width:500px;
 }
