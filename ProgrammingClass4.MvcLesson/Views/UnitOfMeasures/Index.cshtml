@@ -1,0 +1,38 @@
+﻿@model List<UnitOfMeasure>
+
+@{
+    ViewData["Title"] = "UnitOfMeasures";
+}
+
+<table class=" table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var unitofMeasure in Model)
+        {
+            <tr>
+                <td>
+                    @unitofMeasure.Id
+                </td>
+                <td>
+                    @unitofMeasure.Name
+                </td>
+                <td>
+                    @unitofMeasure.Description
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

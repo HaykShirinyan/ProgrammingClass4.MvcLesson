@@ -1,0 +1,38 @@
+﻿@model List<ProductType>
+
+@{
+    ViewData["Title"] = "ProductTypes";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+        </tr
+    </thead>
+    <tbody>
+        @foreach(var productType in Model)
+        {
+           <tr>
+               <td>
+                   @productType.Id
+               </td>
+               <td>
+                   @productType.Name
+               </td>
+               <td>
+                   @productType.Description
+               </td>
+           </tr> 
+        }
+    </tbody>
+
+</table>
