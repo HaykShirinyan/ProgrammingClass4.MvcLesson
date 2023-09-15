@@ -6,7 +6,6 @@ namespace ProgrammingClass4.MvcLesson.Controllers
 {
     public class UnitOfMeasuresController : Controller
     {
-
         private ApplicationDbContext _dbContext;
 
         public UnitOfMeasuresController(ApplicationDbContext dbContext) 

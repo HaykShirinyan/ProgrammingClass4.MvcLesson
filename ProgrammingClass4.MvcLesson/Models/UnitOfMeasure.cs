@@ -14,8 +14,5 @@ namespace ProgrammingClass4.MvcLesson.Models
         [StringLength(200)]
         public string Description { get; set; }
     
-    
-    
-    
     }
 }
