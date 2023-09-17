@@ -5,13 +5,13 @@
 namespace ProgrammingClass4.MvcLesson.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class ProductTypes : Migration
+    public partial class ProductType : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ProductTypes",
+                name: "ProductType",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -23,7 +23,7 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductTypes", x => x.Id);
+                    table.PrimaryKey("PK_ProductType", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(

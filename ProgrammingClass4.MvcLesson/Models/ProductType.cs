@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace ProgrammingClass4.MvcLesson.Models
     
 {
-    public class ProductTypes
+    public class ProductType
     {
         [Key]
         public int Id { get; set; }
@@ -15,9 +15,6 @@ namespace ProgrammingClass4.MvcLesson.Models
 
         [StringLength(500)]
         public string Description { get; set; }
-        public int Quantity { get; set; }
-        public decimal Price { get; set; }
-
-
+  
     }
 }
