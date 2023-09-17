@@ -12,7 +12,7 @@ using ProgrammingClass4.MvcLesson.Data;
 namespace ProgrammingClass4.MvcLesson.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230913072011_UnitOfMeasures")]
+    [Migration("20230917211228_UnitOfMeasures")]
     partial class UnitOfMeasures
     {
         /// <inheritdoc />
@@ -256,7 +256,7 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.ProductTypes", b =>
+            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.ProductType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -274,15 +274,9 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.ToTable("ProductTypes");
+                    b.ToTable("ProductType");
                 });
 
             modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.UnitOfMeasures", b =>
@@ -302,12 +296,6 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
