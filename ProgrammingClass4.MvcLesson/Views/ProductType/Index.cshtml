@@ -1,0 +1,36 @@
+﻿@model List<ProductType> // Model@ nshanakum enq ProductType
+@{
+    ViewData["Title"] = "ProductType";
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+         
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var productType in Model)//Model@ dynamica iskzbane,bayc verevum iran sarqelenq List<ProductTypes> tesaki
+        {
+            <tr>
+                <td>
+                    @productType.Id
+                </td>
+                <td>
+                    @productType.Name
+                </td>
+                <td>
+                    @productType.Description
+                </td>
+
+            </tr> 
+        }
+    </tbody>

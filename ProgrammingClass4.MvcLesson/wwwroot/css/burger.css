@@ -1,0 +1,155 @@
+﻿
+
+body {
+    background-color: #5b8f98;
+    margin: 0px;
+}
+
+.menu li {
+    list-style: none;
+    margin: 0 7px;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    background-color: #2e1e1b;
+    color: white;
+    margin: 0px;
+    padding: 17px;
+    font-size: 25px;
+}
+
+    .menu li a {
+        text-decoration: none;
+        color: #d48d12;
+    }
+
+.image img {
+    width: 40%;
+    height: 50%;
+}
+
+.paragraph-white {
+    color: #d48d12;
+    font-size: 28px;
+    font-weight: bold;
+    background-color: #2e1e1b;
+}
+
+h1 {
+    font-size: 38px;
+}
+
+.paper-bg-content {
+    background: #fcfaea;
+    padding: 5px 15px 10px 15px;
+}
+
+.contacts {
+    display: flex;
+    justify-content: center;
+    background-color: #5b8f98;
+    color: white;
+    margin: 0px;
+    padding: 84px;
+    font-size: 29px;
+}
+
+.about {
+    display: flex;
+    justify-content: center;
+    background-color: #2e1e1b;
+    color: #d76c20;
+    margin: 0px;
+    padding: 84px;
+    font-size: 68px;
+    background-color: aqua;
+    margin-bottom: -16px;
+}
+
+.contacts-h3 {
+    padding: 32px;
+}
+
+.table-contacts {
+    color: white;
+}
+
+.menu-menu {
+    justify-content: center;
+    display: flex;
+    background-color: #ffffff;
+    margin: 19px 515px
+}
+
+.aligned {
+    display: flex;
+    align-items: center;
+    padding: 50px;
+}
+
+.test {
+    background-color: aqua;
+}
+
+#text {
+    padding: 4px;
+    color: #d48d12;
+    font-size: 29px;
+    line-height: 1.5;
+    letter-spacing: 2px;
+    font-weight: bold;
+    background-color: #2e1e1b;
+}
+
+.about-us {
+    font-size: xxx-large;
+    color: #c8b8b8;
+    margin: 0px;
+    
+}
+
+.about-text {
+    padding-right: 50px;
+}
+
+.background-image {
+    background-image: url("https://media.istockphoto.com/id/1171855359/vector/burger-seamless-pattern-vector.jpg?s=1024x1024&w=is&k=20&c=P28wU7rG1amOV1tHtkn44mieXiqLW2-tlonoxEh4bGI=");
+}
+
+.dear-customer {
+    color: #d48d12;
+    background-color: #fdfdfd;
+    margin-right: 777px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.menu-menu-menu {
+    color: #d48d12;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.image-home img {
+    width: 30%;
+    height: 50%;
+}
+
+.h4 {
+    background-color: white;
+    margin-right: 1050px;
+}
+.about-us{
+
+}
+.body-about {
+    background-color: #00ffff;
+    margin: 0px;
+}
+.index {
+  border:10px 10px;
+}
