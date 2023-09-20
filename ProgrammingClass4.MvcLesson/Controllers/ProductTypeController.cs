@@ -24,14 +24,14 @@ namespace ProgrammingClass4.MvcLesson.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(ProductType productType)
+        public IActionResult Create(ProductType productType)//save
         {
             if (ModelState.IsValid)
             {
                 _dbContext.ProductType.Add(productType);
                 _dbContext.SaveChanges();
 
-                return RedirectToAction("Index");
+                return Index();
             }
             return View(productType);
         }
@@ -47,7 +47,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
             return NotFound();
         }
         [HttpPost]
-        public IActionResult Edit(ProductType productType)
+        public IActionResult Edit(ProductType productType)//save
         { 
             if (ModelState.IsValid)
             {
