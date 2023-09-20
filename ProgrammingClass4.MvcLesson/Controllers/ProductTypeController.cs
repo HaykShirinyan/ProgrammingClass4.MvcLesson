@@ -31,7 +31,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
                 _dbContext.ProductType.Add(productType);
                 _dbContext.SaveChanges();
 
-                return Index();
+                return RedirectToAction("Index");
             }
             return View(productType);
         }
