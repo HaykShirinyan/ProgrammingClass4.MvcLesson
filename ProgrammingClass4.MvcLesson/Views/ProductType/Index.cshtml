@@ -2,6 +2,11 @@
 @{
     ViewData["Title"] = "ProductType";
 }
+<div>
+    <a asp-controller="ProductType" asp-action="Create" class="btn btn-primary">
+        Creat Product type
+    </a> 
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -13,6 +18,9 @@
             </th>
             <th>
                 Description
+            </th>
+            <th>
+                Action
             </th>
          
         </tr>
@@ -29,6 +37,11 @@
                 </td>
                 <td>
                     @productType.Description
+                </td>
+                <td>
+                    <a asp-controller="ProductType" asp-action="Edit" asp-route-id="@productType.Id " class="btn btn-secondary">
+                       Edit
+                    </a>
                 </td>
 
             </tr> 

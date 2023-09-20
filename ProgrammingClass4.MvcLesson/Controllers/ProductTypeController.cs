@@ -13,10 +13,51 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         }
         public IActionResult Index()
         {
-            List<ProductType>productType = _dbContext.ProductType.ToList();//_dbContext fieldi ognutyamb ProductTypes list@ vercnum enq u dnum enq productTypes popoxakani mej
+            List<ProductType> productType = _dbContext.ProductType.ToList();//_dbContext fieldi ognutyamb ProductTypes list@ vercnum enq u dnum enq productTypes popoxakani mej
             //poxancum enq Viewin productTypes@,tvyalner@ poxancecinq View(ProductTypes) folderin
 
             return View(productType);
+        }
+        [HttpGet]
+        public IActionResult Create() 
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(ProductType productType)
+        {
+            if (ModelState.IsValid)
+            {
+                _dbContext.ProductType.Add(productType);
+                _dbContext.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            return View(productType);
+        }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var productType = _dbContext.ProductType.Find(id);
+
+            if (productType != null) 
+            {
+                return View(productType);
+            }
+            return NotFound();
+        }
+        [HttpPost]
+        public IActionResult Edit(ProductType productType)
+        { 
+            if (ModelState.IsValid)
+            {
+                _dbContext.ProductType.Update(productType);
+                _dbContext.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            return View(productType);
+        
         }
     }
 }
