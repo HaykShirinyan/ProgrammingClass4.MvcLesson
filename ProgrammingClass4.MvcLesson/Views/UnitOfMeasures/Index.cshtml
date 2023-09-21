@@ -2,6 +2,9 @@
 @{
     ViewData["Title"] = "Products";
 }
+<a asp-controller="UnitOfMeasures" asp-action="Create" class="btn btn-primary">
+    Creat Unit of measure
+</a>
 <table class="table">
     <thead>
         <tr>
@@ -13,6 +16,12 @@
             </th>
             <th>
                 Description
+            </th>
+            <th>
+                Size
+            </th>
+            <th>
+                Action
             </th>
 
         </tr>
@@ -29,6 +38,14 @@
                 </td>
                 <td>
                     @unitOfMeasures.Description
+                </td>
+                <td>
+                    @unitOfMeasures.Size
+                </td>
+                <td>
+                    <a asp-controller="UnitOfMeasures" asp-action="Edit" asp-route-id="@unitOfMeasures.Id" class="btn btn-secondary ">
+                        Edit
+                    </a>
                 </td>
 
             </tr>

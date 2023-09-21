@@ -10,13 +10,20 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-
+            migrationBuilder.AddColumn<string>(
+                name: "Size",
+                table: "UnitOfMeasures",
+                type: "nvarchar(max)",
+                nullable: false,
+                defaultValue: "");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-
+            migrationBuilder.DropColumn(
+                name: "Size",
+                table: "UnitOfMeasures");
         }
     }
 }
