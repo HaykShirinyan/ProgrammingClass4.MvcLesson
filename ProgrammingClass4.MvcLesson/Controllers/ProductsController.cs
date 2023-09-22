@@ -30,7 +30,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         [HttpPost]
         public IActionResult Create(Product product)
         {
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
                 _dbContext.Products.Add(product);
                 _dbContext.SaveChanges();

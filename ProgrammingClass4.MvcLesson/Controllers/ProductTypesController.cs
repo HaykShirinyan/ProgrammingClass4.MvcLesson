@@ -19,5 +19,49 @@ namespace ProgrammingClass4.MvcLesson.Controllers
             
             return View(productTypes);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(ProductType productType) 
+        { 
+            if(ModelState.IsValid) 
+            { 
+                _dbContext.ProductTypes.Add(productType);
+                _dbContext.SaveChanges();
+                return RedirectToAction("Index");   
+            
+            }
+            
+            return View(productType);
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var productType =_dbContext.ProductTypes.Find(id);
+
+            if(productType != null) 
+            { 
+                return View(productType);
+            }
+
+            return NotFound();
+        }
+
+        [HttpPost]
+        public IActionResult Edit(ProductType productType) 
+        {
+            if (ModelState.IsValid) 
+            { 
+                _dbContext.ProductTypes.Update(productType);
+                _dbContext.SaveChanges();
+                return RedirectToAction("Index");   
+            }
+            
+            return View(productType);
+        }
     }
 }

@@ -4,6 +4,10 @@
     ViewData["Title"] = "ProductTypes";
 }
 
+<a class="btn btn-primary"  asp-controller="ProductTypes" asp-action="Create">
+    Create ProductType
+</a>
+
 <table class="table">
     <thead>
         <tr>
@@ -16,7 +20,10 @@
             <th>
                 Description
             </th>
-        </tr
+            <th>
+                Actions
+            </th>
+        </tr>
     </thead>
     <tbody>
         @foreach(var productType in Model)
@@ -30,6 +37,11 @@
                </td>
                <td>
                    @productType.Description
+               </td>
+               <td>
+                   <a asp-controller="ProductTypes" asp-action="Edit" asp-route-id="@productType.Id" class="btn btn-secondary">
+                       Edit
+                   </a>
                </td>
            </tr> 
         }
