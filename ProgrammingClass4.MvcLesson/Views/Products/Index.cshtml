@@ -4,6 +4,10 @@
     ViewData["Title"] = "Products";
 }
 
+<a class="btn btn-primary" asp-controller="Products" asp-action="Create">
+    Create Product
+</a>
+
 <table class="table">
     <thead>
         <tr>
@@ -21,6 +25,9 @@
             </th>
             <th>
                 Unit Price
+            </th>
+            <th>
+                Actions
             </th>
         </tr>
     </thead>
@@ -43,6 +50,14 @@
                 </td>
                 <td>
                     @product.UnitPrice
+                </td>
+                <td>
+                    <a asp-controller="Products" 
+                        asp-action="Edit" 
+                        asp-route-id="@product.Id"
+                        class="btn btn-secondary">
+                        Edit
+                    </a>
                 </td>
             </tr>
         }
