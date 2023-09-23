@@ -12,5 +12,8 @@ namespace ProgrammingClass4.MvcLesson.Models
 
         [StringLength(500)]
         public string Description { get; set; }
+        public int Quantity { get; set; }
+        public decimal Price { get; set; }
+
     }
 }
