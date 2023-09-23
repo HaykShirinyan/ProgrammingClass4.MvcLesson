@@ -12,7 +12,7 @@ using ProgrammingClass4.MvcLesson.Data;
 namespace ProgrammingClass4.MvcLesson.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230920234014_UnitOfMeasures")]
+    [Migration("20230923035210_UnitOfMeasures")]
     partial class UnitOfMeasures
     {
         /// <inheritdoc />
@@ -296,10 +296,6 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Size")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
