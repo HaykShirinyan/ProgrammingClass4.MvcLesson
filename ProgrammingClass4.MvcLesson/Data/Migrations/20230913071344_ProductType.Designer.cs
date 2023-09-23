@@ -12,8 +12,8 @@ using ProgrammingClass4.MvcLesson.Data;
 namespace ProgrammingClass4.MvcLesson.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230917210730_ProductType")]
-    partial class ProductType
+    [Migration("20230913071344_ProductTypes")]
+    partial class ProductTypes
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -256,7 +256,7 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.ProductType", b =>
+            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.ProductTypes", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -274,9 +274,15 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("ProductType");
+                    b.ToTable("ProductTypes");
                 });
 
             modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.UnitOfMeasures", b =>
@@ -296,6 +302,12 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
