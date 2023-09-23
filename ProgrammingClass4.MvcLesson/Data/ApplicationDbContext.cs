@@ -16,7 +16,7 @@ namespace ProgrammingClass4.MvcLesson.Data
         {
         }
 
-        public static implicit operator ApplicationDbContext(ProductTypesController1 v)
+        public static implicit operator ApplicationDbContext(ProductTypeController1 v)
         {
             throw new NotImplementedException();
         }
