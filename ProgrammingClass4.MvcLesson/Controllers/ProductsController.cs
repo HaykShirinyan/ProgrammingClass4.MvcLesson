@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProgrammingClass4.MvcLesson.Data;
 using ProgrammingClass4.MvcLesson.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProgrammingClass4.MvcLesson.Controllers
 {
@@ -16,7 +17,10 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            List<Product> products = _dbContext.Products.ToList();
+            List<Product> products = _dbContext
+                .Products
+                .Include(product => product.Manufacturer)
+                .ToList();
 
             return View(products);
         }
@@ -24,6 +28,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewBag.Manufacturers = _dbContext.Manufacturers.ToList();
             return View();
         }
 
@@ -38,6 +43,8 @@ namespace ProgrammingClass4.MvcLesson.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.Manufacturers = _dbContext.Manufacturers.ToList();
+
             return View(product);
         }
 
@@ -48,6 +55,8 @@ namespace ProgrammingClass4.MvcLesson.Controllers
 
             if (product != null)
             {
+                ViewBag.Manufacturers = _dbContext.Manufacturers.ToList();
+
                 return View(product);
             }
 
@@ -64,6 +73,8 @@ namespace ProgrammingClass4.MvcLesson.Controllers
 
                 return RedirectToAction("Index");
             }
+
+            ViewBag.Manufacturers = _dbContext.Manufacturers.ToList();
 
             return View(product);
         }

@@ -27,6 +27,9 @@
                 Unit Price
             </th>
             <th>
+                Manufacturer
+            </th>
+            <th>
                 Actions
             </th>
         </tr>
@@ -50,6 +53,9 @@
                 </td>
                 <td>
                     @product.UnitPrice
+                </td>
+                <td>
+                    @product.Manufacturer?.Name
                 </td>
                 <td>
                     <a asp-controller="Products" 
