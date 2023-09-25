@@ -2,7 +2,7 @@
 
 namespace ProgrammingClass4.MvcLesson.Models
 {
-    public class Product
+    public class Manufacturer
     {
         [Key]
         public int Id { get; set; }
@@ -13,12 +13,5 @@ namespace ProgrammingClass4.MvcLesson.Models
 
         [StringLength(500)]
         public string Description { get; set; }
-
-        public int Quantity { get; set; }
-
-        public decimal UnitPrice { get; set; }
-
-        public int? ManufacturerId { get; set; }
-        public Manufacturer? Manufacturer { get; set; }
     }
 }

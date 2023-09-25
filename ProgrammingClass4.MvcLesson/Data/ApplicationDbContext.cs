@@ -7,6 +7,7 @@ namespace ProgrammingClass4.MvcLesson.Data
     public class ApplicationDbContext : IdentityDbContext
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<Manufacturer> Manufacturers { get; set; }
 
         public DbSet<ProductType> ProductTypes { get; set; }
 
