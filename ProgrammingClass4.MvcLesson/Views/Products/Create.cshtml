@@ -55,6 +55,34 @@
                 </option>
             }
         </select>
+        <div class="mb-3">
+            <label asp-for="ProductTypeId" class="form-label">
+                ProductType
+            </label>
+            <select asp-for="ProductTypeId" class="form-control">
+                <option value="">-- Select --</option>
+                @foreach(var productType in ViewBag.ProductTypes as List<ProductType>)
+                {
+                    <option value="@productType.Id">
+                        @productType.Name
+                    </option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label asp-for="MeasureId" class="form-label">
+               Unitofmeasure
+            </label>
+            <select asp-for="MeasureId" class="form-control">
+                <option value=""> --Select-- </option>
+                @foreach(var measure in ViewBag.UnitOfMeasures as List<UnitOfMeasure>)
+                {
+                    <option value="@measure.Id">
+                        @measure.Name
+                    </option>
+                }
+            </select>
+        </div>
     </div>
 
     <button type="submit" class="btn btn-primary">

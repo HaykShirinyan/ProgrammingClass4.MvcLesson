@@ -20,5 +20,12 @@ namespace ProgrammingClass4.MvcLesson.Models
 
         public int? ManufacturerId { get; set; }
         public Manufacturer? Manufacturer { get; set; }
+
+        public int? ProductTypeId { get; set; }
+        public ProductType? ProductType { get; set; }
+
+        public int? MeasureId { get; set; }
+
+        public UnitOfMeasure? Measure { get; set; }
     }
 }

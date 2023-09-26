@@ -30,8 +30,15 @@
                 Manufacturer
             </th>
             <th>
+                ProductType
+            </th>
+            <th>
+                UnitOfMeasure
+            </th>
+            <th>
                 Actions
             </th>
+
         </tr>
     </thead>
 
@@ -56,6 +63,12 @@
                 </td>
                 <td>
                     @product.Manufacturer?.Name
+                </td>
+                <td>
+                    @product.ProductType?.Name
+                </td>
+                <td>
+                    @product.Measure?.Name
                 </td>
                 <td>
                     <a asp-controller="Products" 

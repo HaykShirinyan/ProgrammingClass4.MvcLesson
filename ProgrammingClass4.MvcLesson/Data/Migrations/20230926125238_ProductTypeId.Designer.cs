@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProgrammingClass4.MvcLesson.Data;
 
@@ -11,9 +12,11 @@ using ProgrammingClass4.MvcLesson.Data;
 namespace ProgrammingClass4.MvcLesson.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230926125238_ProductTypeId")]
+    partial class ProductTypeId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -263,9 +266,6 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                     b.Property<int?>("ManufacturerId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("MeasureId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -283,8 +283,6 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ManufacturerId");
-
-                    b.HasIndex("MeasureId");
 
                     b.HasIndex("ProductTypeId");
 
@@ -394,17 +392,11 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                         .WithMany()
                         .HasForeignKey("ManufacturerId");
 
-                    b.HasOne("ProgrammingClass4.MvcLesson.Models.UnitOfMeasure", "Measure")
-                        .WithMany()
-                        .HasForeignKey("MeasureId");
-
                     b.HasOne("ProgrammingClass4.MvcLesson.Models.ProductType", "ProductType")
                         .WithMany()
                         .HasForeignKey("ProductTypeId");
 
                     b.Navigation("Manufacturer");
-
-                    b.Navigation("Measure");
 
                     b.Navigation("ProductType");
                 });
