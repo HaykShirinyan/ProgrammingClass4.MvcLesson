@@ -5,7 +5,7 @@
 namespace ProgrammingClass4.MvcLesson.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class ProductType : Migration
+    public partial class ProductTypeID : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -13,13 +13,11 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
             migrationBuilder.DropTable(
                 name: "ProductType");
 
-            migrationBuilder.DropColumn(
-                name: "Price",
-                table: "UnitOfMeasures");
-
-            migrationBuilder.DropColumn(
-                name: "Quantity",
-                table: "UnitOfMeasures");
+            migrationBuilder.AddColumn<int>(
+                name: "TypeId",
+                table: "Products",
+                type: "int",
+                nullable: true);
 
             migrationBuilder.CreateTable(
                 name: "ProductType",
@@ -34,27 +32,37 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                 {
                     table.PrimaryKey("PK_ProductType", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_TypeId",
+                table: "Products",
+                column: "TypeId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Products_ProductType_TypeId",
+                table: "Products",
+                column: "TypeId",
+                principalTable: "ProductType",
+                principalColumn: "Id");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Products_ProductType_TypeId",
+                table: "Products");
+
             migrationBuilder.DropTable(
                 name: "ProductType");
 
-            migrationBuilder.AddColumn<decimal>(
-                name: "Price",
-                table: "UnitOfMeasures",
-                type: "decimal(18,2)",
-                nullable: false,
-                defaultValue: 0m);
+            migrationBuilder.DropIndex(
+                name: "IX_Products_TypeId",
+                table: "Products");
 
-            migrationBuilder.AddColumn<int>(
-                name: "Quantity",
-                table: "UnitOfMeasures",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
+            migrationBuilder.DropColumn(
+                name: "TypeId",
+                table: "Products");
 
             migrationBuilder.CreateTable(
                 name: "ProductType",
@@ -63,9 +71,7 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {

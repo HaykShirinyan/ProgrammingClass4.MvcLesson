@@ -17,5 +17,7 @@ namespace ProgrammingClass4.MvcLesson.Models
         public int Quantity { get; set; }
 
         public decimal UnitPrice { get; set; }
+        public int? TypeID { get; set; }
+        public ProductType? Type { get; set; }
     }
 }

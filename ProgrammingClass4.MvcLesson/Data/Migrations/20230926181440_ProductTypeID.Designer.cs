@@ -12,8 +12,8 @@ using ProgrammingClass4.MvcLesson.Data;
 namespace ProgrammingClass4.MvcLesson.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230917210730_ProductType")]
-    partial class ProductType
+    [Migration("20230926181440_ProductTypeID")]
+    partial class ProductTypeID
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -248,10 +248,15 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<int?>("TypeId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("UnitPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TypeId");
 
                     b.ToTable("Products");
                 });
@@ -351,6 +356,15 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.Product", b =>
+                {
+                    b.HasOne("ProgrammingClass4.MvcLesson.Models.ProductType", "Type")
+                        .WithMany()
+                        .HasForeignKey("TypeId");
+
+                    b.Navigation("Type");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,6 +1,6 @@
 ﻿@model List<ProductType> // Model@ nshanakum enq ProductType
 @{
-    ViewData["Title"] = "ProductTypes";
+    ViewData["Title"] = "PProductType;
 }
 <div>
     <a asp-controller="ProductType" asp-action="Create" class="btn btn-primary">
@@ -26,7 +26,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var productType in Model)//Model@ dynamica iskzbane,bayc verevum iran sarqelenq List<ProductTypes> tesaki
+        @foreach(var productType in Model)//Model@ dynamica iskzbane,bayc verevum iran sarqelenq List<PProductType tesaki
         {
             <tr>
                 <td>

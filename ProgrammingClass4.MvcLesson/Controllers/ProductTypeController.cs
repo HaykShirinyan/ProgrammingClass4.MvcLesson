@@ -13,8 +13,8 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         }
         public IActionResult Index()
         {
-            List<ProductType> productType = _dbContext.ProductType.ToList();//_dbContext fieldi ognutyamb ProductTypes list@ vercnum enq u dnum enq productTypes popoxakani mej
-            //poxancum enq Viewin productTypes@,tvyalner@ poxancecinq View(ProductTypes) folderin
+            List<ProductType> productType = _dbContext.ProductType.ToList();//_dbContext fieldi ognutyamb ProductType list@ vercnum enq u dnum enq productTypes popoxakani mej
+            //poxancum enq Viewin productTypes@,tvyalner@ poxancecinq View(ProductType) folderin
 
             return View(productType);
         }
