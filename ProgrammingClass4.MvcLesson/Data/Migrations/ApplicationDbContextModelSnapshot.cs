@@ -253,7 +253,7 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.ProductType", b =>
+            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.ProductTypes", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -273,7 +273,7 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductType");
+                    b.ToTable("ProductTypes");
                 });
 
             modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.UnitOfMeasures", b =>

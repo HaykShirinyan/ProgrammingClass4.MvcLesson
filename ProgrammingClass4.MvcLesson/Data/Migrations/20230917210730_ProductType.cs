@@ -5,7 +5,7 @@
 namespace ProgrammingClass4.MvcLesson.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class ProductType : Migration
+    public partial class ProductTypes : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,7 +22,7 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                 table: "UnitOfMeasures");
 
             migrationBuilder.CreateTable(
-                name: "ProductType",
+                name: "ProductTypes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -40,7 +40,7 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ProductType");
+                name: "ProductTypes");
 
             migrationBuilder.AddColumn<decimal>(
                 name: "Price",
