@@ -39,9 +39,30 @@
                 <input asp-for="UnitPrice" class="form-control" />
             </div>
         </div>
+        <div class="mb-3">
+            <label asp-for="TypeID" class="form-label">
+                Type
+            </label>
+            <select asp-for="TypeID" class="form-control">
+                <option value="">
+                    please select
+                </option>
+                @foreach(var type in ViewBag.ProductTypes as List<ProductType>)
+                {
+                    <option value="@type.Id">
+                        @type.Name
+                    </option>
+                }
+            </select>
+        </div>
     </div>
+   <div>
+        <a asp-controller="Products" asp-action="index" class="btn btn-secondary">
+            Cancel
+        </a>
 
-    <button type="submit" class="btn btn-primary">
-        Save
-    </button>
+        <button type="submit" class="btn btn-primary">
+            Save
+        </button>
+   </div>
 </form>

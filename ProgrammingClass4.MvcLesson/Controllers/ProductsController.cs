@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ProgrammingClass4.MvcLesson.Data;
 using ProgrammingClass4.MvcLesson.Models;
 
@@ -15,15 +16,20 @@ namespace ProgrammingClass4.MvcLesson.Controllers
 
         [HttpGet]
         public IActionResult Index()
-        {
-            List<Product> products = _dbContext.Products.ToList();
+        {//Include(product=>product.Type) iranic nerkayacnum e lyambda tesaki funkcia,et funkcian ira mej arden uni Product class@,
+            List<Product> products = _dbContext.Products.Include(product => product.Type).ToList();
 
             return View(products);
         }
 
         [HttpGet]
         public IActionResult Create()
-        {
+        {// sarqum enq ViewBag,u nra ProductTypei mej texadrum enq ProductTyperi List@,vorpeszi dropdown sarqenq
+          // ViewBagi mijocov enq anum vorovhetev mer @model@ Productsa,voch te ProdutsList,es depqum @model@ chi karox ham products linel ham el ProductsList
+          //xosq@ gnum e Creat Viewi meji @modeli masin
+
+            ViewBag.ProductTypes = _dbContext.ProductType.ToList();
+
             return View();
         }
 
@@ -45,6 +51,8 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         public IActionResult Edit(int id)
         {
             var product = _dbContext.Products.Find(id);
+
+            ViewBag.ProductTypes = _dbContext.ProductType.ToList();
 
             if (product != null)
             {
