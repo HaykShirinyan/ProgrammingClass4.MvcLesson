@@ -39,6 +39,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(Product product)
         {
             if (ModelState.IsValid)
@@ -48,6 +49,8 @@ namespace ProgrammingClass4.MvcLesson.Controllers
 
                 return RedirectToAction("Index");
             }
+            ViewBag.ProductTypes = _dbContext.ProductType.ToList();
+            ViewBag.UnitOfMeasures = _dbContext.UnitOfMeasures.ToList();
 
             return View(product);
         }
@@ -69,6 +72,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit(Product product)
         {
             if (ModelState.IsValid)
@@ -78,6 +82,8 @@ namespace ProgrammingClass4.MvcLesson.Controllers
 
                 return RedirectToAction("Index");
             }
+            ViewBag.ProductTypes = _dbContext.ProductType.ToList();
+            ViewBag.UnitOfMeasures = _dbContext.UnitOfMeasures.ToList();
 
             return View(product);
         }
