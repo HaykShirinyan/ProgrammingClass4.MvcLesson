@@ -30,6 +30,9 @@
                 Type
             </th>
             <th>
+                Unit 0f measure
+            </th>
+            <th>
                 Actions
             </th>
         </tr>
@@ -57,6 +60,9 @@
                 </td>
                 <td>
                     @product.Type?.Name 
+                </td>
+                <td>
+                    @product.UnitOfMeasure?.Name
                 </td>
                 <td>
                     <a asp-controller="Products"

@@ -10,6 +10,7 @@ namespace ProgrammingClass4.MvcLesson.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductType> ProductType { get; set; } //generic type , darnuma ProductType ov DbSet
         public DbSet<UnitOfMeasures> UnitOfMeasures { get; set; }
+        public object UnitOfMeasure { get; internal set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

@@ -17,8 +17,12 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         [HttpGet]
         public IActionResult Index()
         {//Include(product=>product.Type) iranic nerkayacnum e lyambda tesaki funkcia,et funkcian ira mej arden uni Product class@,
-            List<Product> products = _dbContext.Products.Include(product => product.Type).ToList();
-
+            List<Product> products = _dbContext
+                .Products
+                .Include(product => product.Type)
+                .Include(product => product.UnitOfMeasure)
+                .ToList();
+            
             return View(products);
         }
 
@@ -29,6 +33,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
           //xosq@ gnum e Creat Viewi meji @modeli masin
 
             ViewBag.ProductTypes = _dbContext.ProductType.ToList();
+            ViewBag.UnitOfMeasures = _dbContext.UnitOfMeasures.ToList();
 
             return View();
         }
@@ -53,6 +58,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
             var product = _dbContext.Products.Find(id);
 
             ViewBag.ProductTypes = _dbContext.ProductType.ToList();
+            ViewBag.UnitOfMeasures = _dbContext.UnitOfMeasures.ToList();
 
             if (product != null)
             {

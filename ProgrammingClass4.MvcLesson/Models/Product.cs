@@ -17,7 +17,10 @@ namespace ProgrammingClass4.MvcLesson.Models
         public int Quantity { get; set; }
 
         public decimal UnitPrice { get; set; }
-        public int? TypeID { get; set; }
-        public ProductType? Type { get; set; }
+        public int? TypeID { get; set; }//foreign key
+        public ProductType? Type { get; set; }//ProductTypei Type propertieya sarqaca vorpesi cragir@ haskana vor verevum TypeID in foreign keya
+
+        public int? UnitOfMeasureId { get; set; }//foreign key
+        public UnitOfMeasures? UnitOfMeasure { get; set; }//UnitOfMeasures UnitOfMeasure propertieya sarqac vor cragir@ haskana vor verevum foreign keya sarqac
     }
 }
