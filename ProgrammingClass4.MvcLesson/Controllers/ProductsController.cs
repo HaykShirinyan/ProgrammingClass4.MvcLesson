@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProgrammingClass4.MvcLesson.Data;
 using ProgrammingClass4.MvcLesson.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProgrammingClass4.MvcLesson.Controllers
 {
@@ -16,9 +17,11 @@ namespace ProgrammingClass4.MvcLesson.Controllers
 
         [HttpGet]
         public IActionResult Index()
-        {//Include(product=>product.Type) iranic nerkayacnum e lyambda tesaki funkcia,et funkcian ira mej arden uni Product class@,
+        {
+            //Include(product=>product.Type) iranic nerkayacnum e lyambda tesaki funkcia,et funkcian ira mej arden uni Product class@,
             List<Product> products = _dbContext
                 .Products
+                .Include(product => product.Manufacturer)
                 .Include(product => product.Type)
                 .Include(product => product.UnitOfMeasure)
                 .ToList();
@@ -28,10 +31,12 @@ namespace ProgrammingClass4.MvcLesson.Controllers
 
         [HttpGet]
         public IActionResult Create()
-        {// sarqum enq ViewBag,u nra ProductTypei mej texadrum enq ProductTyperi List@,vorpeszi dropdown sarqenq
-          // ViewBagi mijocov enq anum vorovhetev mer @model@ Productsa,voch te ProdutsList,es depqum @model@ chi karox ham products linel ham el ProductsList
-          //xosq@ gnum e Creat Viewi meji @modeli masin
+        {
+            // sarqum enq ViewBag,u nra ProductTypei mej texadrum enq ProductTyperi List@,vorpeszi dropdown sarqenq
+            // ViewBagi mijocov enq anum vorovhetev mer @model@ Productsa,voch te ProdutsList,es depqum @model@ chi karox ham products linel ham el ProductsList
+            //xosq@ gnum e Creat Viewi meji @modeli masin
 
+            ViewBag.Manufacturers = _dbContext.Manufacturers.ToList();
             ViewBag.ProductTypes = _dbContext.ProductType.ToList();
             ViewBag.UnitOfMeasures = _dbContext.UnitOfMeasures.ToList();
 
@@ -52,6 +57,8 @@ namespace ProgrammingClass4.MvcLesson.Controllers
             ViewBag.ProductTypes = _dbContext.ProductType.ToList();
             ViewBag.UnitOfMeasures = _dbContext.UnitOfMeasures.ToList();
 
+            ViewBag.Manufacturers = _dbContext.Manufacturers.ToList();
+
             return View(product);
         }
 
@@ -65,6 +72,8 @@ namespace ProgrammingClass4.MvcLesson.Controllers
 
             if (product != null)
             {
+                ViewBag.Manufacturers = _dbContext.Manufacturers.ToList();
+
                 return View(product);
             }
 
@@ -84,6 +93,8 @@ namespace ProgrammingClass4.MvcLesson.Controllers
             }
             ViewBag.ProductTypes = _dbContext.ProductType.ToList();
             ViewBag.UnitOfMeasures = _dbContext.UnitOfMeasures.ToList();
+
+            ViewBag.Manufacturers = _dbContext.Manufacturers.ToList();
 
             return View(product);
         }

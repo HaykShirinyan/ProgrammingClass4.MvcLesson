@@ -17,15 +17,8 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         {
             return View();
         }
-        public IActionResult Menu()
-        {
-            return View();
-        }
-        public IActionResult Contacts()
-        {
-            return View();
-        }
-        public IActionResult AboutUs() 
+
+        public IActionResult Privacy()
         {
             return View();
         }

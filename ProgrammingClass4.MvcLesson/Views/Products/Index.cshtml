@@ -27,6 +27,9 @@
                 Unit Price
             </th>
             <th>
+                Manufacturer
+            </th>
+            <th>
                 Type
             </th>
             <th>
@@ -57,6 +60,9 @@
                 </td>
                 <td>
                     @product.UnitPrice
+                </td>
+                <td>
+                    @product.Manufacturer?.Name
                 </td>
                 <td>
                     @product.Type?.Name 
