@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProgrammingClass4.MvcLesson.Data;
 
@@ -11,9 +12,11 @@ using ProgrammingClass4.MvcLesson.Data;
 namespace ProgrammingClass4.MvcLesson.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231001175327_Categories")]
+    partial class Categories
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -278,6 +281,7 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
@@ -288,38 +292,18 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<decimal>("UnitPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("TypeID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UnitOfMeasureId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ManufacturerId");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.ProductCategory", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductId", "CategoryId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("ProductCategories");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -380,37 +364,6 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                         .HasForeignKey("ManufacturerId");
 
                     b.Navigation("Manufacturer");
-
-                    b.HasOne("ProgrammingClass4.MvcLesson.Models.ProductType", "Type")
-                        .WithMany()
-                        .HasForeignKey("TypeID");
-
-                    b.HasOne("ProgrammingClass4.MvcLesson.Models.UnitOfMeasures", "UnitOfMeasure")
-                        .WithMany()
-                        .HasForeignKey("UnitOfMeasureId");
-
-                    b.Navigation("Type");
-
-                    b.Navigation("UnitOfMeasure");
-                });
-
-            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.ProductCategory", b =>
-                {
-                    b.HasOne("ProgrammingClass4.MvcLesson.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProgrammingClass4.MvcLesson.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Product");
                 });
 #pragma warning restore 612, 618
         }

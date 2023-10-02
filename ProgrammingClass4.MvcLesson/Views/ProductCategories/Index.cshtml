@@ -1,0 +1,71 @@
+﻿@model List<ProductCategory>
+
+@{
+    ViewData["Title"] = "Product Categories";
+}
+
+<div>
+    <h1 class="h2">
+        @ViewBag.Product.Name Categories
+    </h1>
+
+    <form asp-controller="ProductCategories" asp-action="Create">
+        <input type="hidden" name="ProductId" value="@ViewBag.Product.Id" />
+
+        <div class="mb-3">
+            <label for="category-id" class="form-label">
+                Select Category
+            </label>
+
+            <div class="input-group">
+                <select id="category-id" name="CategoryId" class="form-control">
+                    <option>-- Please Select --</option>
+
+                    @foreach (var category in ViewBag.Categories as List<Category>)
+                    {
+                        <option value="@category.Id">
+                            @category.Name
+                        </option>
+                    }
+                </select>
+
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Add</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Description
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var productCategory in Model)
+            {
+                <tr>
+                    <td>
+                        @productCategory.Category.Id
+                    </td>
+                    <td>
+                        @productCategory.Category.Name
+                    </td>
+                    <td>
+                        @productCategory.Category.Description
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

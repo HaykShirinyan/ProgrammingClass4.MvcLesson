@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProgrammingClass4.MvcLesson.Data;
 
@@ -11,9 +12,11 @@ using ProgrammingClass4.MvcLesson.Data;
 namespace ProgrammingClass4.MvcLesson.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231001180446_ProductCategories")]
+    partial class ProductCategories
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -278,6 +281,7 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
@@ -288,17 +292,12 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<decimal>("UnitPrice")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<int?>("TypeID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UnitOfMeasureId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -380,18 +379,6 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                         .HasForeignKey("ManufacturerId");
 
                     b.Navigation("Manufacturer");
-
-                    b.HasOne("ProgrammingClass4.MvcLesson.Models.ProductType", "Type")
-                        .WithMany()
-                        .HasForeignKey("TypeID");
-
-                    b.HasOne("ProgrammingClass4.MvcLesson.Models.UnitOfMeasures", "UnitOfMeasure")
-                        .WithMany()
-                        .HasForeignKey("UnitOfMeasureId");
-
-                    b.Navigation("Type");
-
-                    b.Navigation("UnitOfMeasure");
                 });
 
             modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.ProductCategory", b =>

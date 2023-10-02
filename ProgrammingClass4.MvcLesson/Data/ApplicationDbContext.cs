@@ -11,10 +11,21 @@ namespace ProgrammingClass4.MvcLesson.Data
         public DbSet<ProductType> ProductType { get; set; } //generic type , darnuma ProductType ov DbSet
         public DbSet<UnitOfMeasures> UnitOfMeasures { get; set; }
         public object UnitOfMeasure { get; internal set; }
-
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+        
+           
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<ProductCategory>()
+                .HasKey(productCategory => new { productCategory.ProductId, productCategory.CategoryId });
         }
     }
 }
