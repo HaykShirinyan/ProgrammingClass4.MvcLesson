@@ -1,0 +1,56 @@
+﻿@model List<Color>
+@{
+    ViewData["Title"] = "Color";//???
+}
+<div>
+    <a asp-controller="Colors" asp-action="Create" class="btn btn-primary">
+        Creat Product color
+    </a>
+</div>
+<table class="table">
+    <thead>
+
+        <tr>
+
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Action
+            </th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+        @foreach (var color in Model)//Model@ dynamica iskzbane,bayc verevum iran sarqelenq List<color> tesaki
+        {
+            <tr>
+
+                <td>
+                    @color.Id
+                </td>
+                <td>
+                    @color.Name
+                </td>
+                <td>
+                    @color.Description
+                </td>
+                <td>
+                    <a asp-controller="Colors" asp-action="Edit" asp-route-id="@color.Id " class="btn btn-secondary">
+                        Edit
+                    </a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
