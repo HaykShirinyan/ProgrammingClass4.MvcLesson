@@ -5,6 +5,7 @@ using ProgrammingClass4.MvcLesson.Models;
 
 namespace ProgrammingClass4.MvcLesson.Controllers
 {
+    [Route("ProductColors")]
     public class ProductColorsController : Controller
     {
         private readonly ApplicationDbContext _dbContext;
