@@ -13,6 +13,8 @@ namespace ProgrammingClass4.MvcLesson.Data
         public object UnitOfMeasure { get; internal set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<Color> Colors { get; set; }
+        public DbSet<ProductColor> ProductColors { get; set; }
         
            
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -26,6 +28,8 @@ namespace ProgrammingClass4.MvcLesson.Data
 
             builder.Entity<ProductCategory>()
                 .HasKey(productCategory => new { productCategory.ProductId, productCategory.CategoryId });
+            builder.Entity<ProductColor>()
+                .HasKey(productColor => new { productColor.ProductId, productColor.ColorId });
         }
     }
 }

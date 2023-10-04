@@ -1,0 +1,69 @@
+﻿@model List<ProductColor>
+
+@{
+    ViewData["Title"] = "Product Colors";
+}
+
+<div>
+    <h1 class="h2">
+       Product Color
+    </h1>
+
+  <form asp-controller="ProductColors" asp-action="create">
+
+        <input type="hidden" name="ProductId" value="@ViewBag.Product.Id" />
+
+        <div class="mb-3">
+            <label for="color-id" class="form-label">
+                select color
+            </label>
+            <div class="input-group">
+                <select id="color-id" name="ColorId" class="form-control">
+                    <option>
+                        please select
+                    </option>
+                    @foreach (var color in ViewBag.Colors as List<Color>)
+                    {
+                        <option value="@color.Id">
+                            @color.Name
+                        </option>
+                    }
+                </select>
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Add</button>
+                </div>
+
+            </div>
+  </form>
+   </div>
+    <table class="table"> 
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Description
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach(var productColor in Model)
+            {
+                <tr>
+                    @productColor.Color.Id
+                </tr>
+                <tr>
+                    @productColor.Color.Name
+                </tr>
+                <tr>
+                    @productColor.Color.Description
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

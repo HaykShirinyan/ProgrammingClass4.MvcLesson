@@ -26,5 +26,6 @@ namespace ProgrammingClass4.MvcLesson.Models
 
         public int? UnitOfMeasureId { get; set; }//foreign key
         public UnitOfMeasures? UnitOfMeasure { get; set; }//UnitOfMeasures UnitOfMeasure propertieya sarqac vor cragir@ haskana vor verevum foreign keya sarqac
+
     }
 }
