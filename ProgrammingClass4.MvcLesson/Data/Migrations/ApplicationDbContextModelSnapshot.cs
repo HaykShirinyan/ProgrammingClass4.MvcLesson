@@ -243,7 +243,7 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.Manufacturer", b =>
@@ -266,7 +266,7 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Manufacturers");
+                    b.ToTable("Manufacturers", (string)null);
                 });
 
             modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.Product", b =>
@@ -285,16 +285,10 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                     b.Property<int?>("ManufacturerId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("MeasureId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<int?>("ProductTypeId")
-                        .HasColumnType("int");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -306,57 +300,7 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
 
                     b.HasIndex("ManufacturerId");
 
-                    b.HasIndex("MeasureId");
-
-                    b.HasIndex("ProductTypeId");
-
-                    b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.ProductType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProductTypes");
-                });
-
-            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.UnitOfMeasure", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UnitOfMeasures");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.ProductCategory", b =>
@@ -371,7 +315,7 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("ProductCategories");
+                    b.ToTable("ProductCategories", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -431,19 +375,26 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                         .WithMany()
                         .HasForeignKey("ManufacturerId");
 
-                    b.HasOne("ProgrammingClass4.MvcLesson.Models.UnitOfMeasure", "Measure")
-                        .WithMany()
-                        .HasForeignKey("MeasureId");
-
-                    b.HasOne("ProgrammingClass4.MvcLesson.Models.ProductType", "ProductType")
-                        .WithMany()
-                        .HasForeignKey("ProductTypeId");
-
                     b.Navigation("Manufacturer");
+                });
 
-                    b.Navigation("Measure");
+            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.ProductCategory", b =>
+                {
+                    b.HasOne("ProgrammingClass4.MvcLesson.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("ProductType");
+                    b.HasOne("ProgrammingClass4.MvcLesson.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Product");
                 });
 #pragma warning restore 612, 618
         }
