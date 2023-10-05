@@ -4,24 +4,24 @@
     ViewData["Title"] = "Product Colors";
 }
 
+
 <div>
     <h1 class="h2">
-       Product Color
+        @ViewBag.Product.Name Color
     </h1>
 
-  <form asp-controller="ProductColors" asp-action="create">
-
+    <form asp-controller="ProductColors" asp-action="Create">
         <input type="hidden" name="ProductId" value="@ViewBag.Product.Id" />
 
         <div class="mb-3">
             <label for="color-id" class="form-label">
-                select color
+                Select Color
             </label>
+
             <div class="input-group">
                 <select id="color-id" name="ColorId" class="form-control">
-                    <option>
-                        please select
-                    </option>
+                    <option>-- Please Select --</option>
+
                     @foreach (var color in ViewBag.Colors as List<Color>)
                     {
                         <option value="@color.Id">
@@ -29,14 +29,15 @@
                         </option>
                     }
                 </select>
+
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="submit">Add</button>
                 </div>
-
             </div>
-  </form>
-   </div>
-    <table class="table"> 
+        </div>
+    </form>
+
+    <table class="table">
         <thead>
             <tr>
                 <th>
@@ -52,18 +53,23 @@
         </thead>
 
         <tbody>
-            @foreach(var productColor in Model)
+            @foreach (var productColor in Model)
             {
                 <tr>
-                    @productColor.Color.Id
-                </tr>
-                <tr>
-                    @productColor.Color.Name
-                </tr>
-                <tr>
-                    @productColor.Color.Description
+                    <td>
+                        @productColor.Color.Id
+                    </td>
+                    <td>
+                        @productColor.Color.Name
+                    </td>
+                    <td>
+                        @productColor.Color.Description
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+
+
+
