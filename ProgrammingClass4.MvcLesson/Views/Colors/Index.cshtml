@@ -1,0 +1,49 @@
+﻿@model List<Color>
+
+@{
+    ViewData["title"] = "Colors";
+}
+
+<a class="btn btn-primary" asp-controller="Colors" asp-action="Create">
+    Create Color
+</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var color in Model)
+        {
+            <tr>
+                <td>
+                    @color.Id
+                </td>
+                <td>
+                    @color.Name
+                </td>
+                <td>
+                    @color.Description
+                </td>
+                <td>
+                    <a asp-controller="Colors" asp-action="Edit" asp-route-id="@color.Id" class="btn btn-secondary">
+                        Edit
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

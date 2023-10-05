@@ -103,7 +103,11 @@
             Categories
         </a>
     </div>
-
+   <div class="mb-3">
+        <a asp-controller="ProductColors" asp-action="Index" asp-route-productId="@Model.Id">
+        Colors
+    </a>
+   </div>
     <button class="btn btn-primary">
         Save
     </button>
