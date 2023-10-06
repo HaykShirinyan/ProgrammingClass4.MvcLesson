@@ -1,0 +1,60 @@
+﻿@model List<ProductSize>
+@{
+    ViewData ["Title"] = "Product Size";
+}
+<h2>
+    @ViewBag.Product.Name Sizes
+</h2>
+<form asp-controller="ProductSizes" asp-action="Create">
+    <input type="hidden" name="ProductId" value="@ViewBag.Product.Id" />
+ <div class="mb-3">
+    <label for="size-id" class="form-label">
+        Select Size
+    </label>
+    <div class="input-group">
+        <select id="size-id" name="SizeId" class="form-control">
+            <option> --Please Select--</option>
+                @foreach (var size in ViewBag.Sizes as List<Size>)
+                {
+                    <option value="@size.Id">
+                        @size.Name
+                    </option>
+                }
+        </select>
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">Add</button>
+        </div>
+    </div>
+</div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var productSize in Model)
+        {
+            <tr>
+                <td>
+                    @productSize.Size.Id
+                </td>
+                <td>
+                    @productSize.Size.Name
+                </td>
+                <td>
+                    @productSize.Size.Description
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

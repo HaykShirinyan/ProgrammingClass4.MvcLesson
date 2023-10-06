@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 using ProgrammingClass4.MvcLesson.Models;
 
 namespace ProgrammingClass4.MvcLesson.Data
@@ -14,6 +15,8 @@ namespace ProgrammingClass4.MvcLesson.Data
         public DbSet<UnitOfMeasure> UnitOfMeasures { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<ProductColor> ProductColors { get; set; }
+        public DbSet<Size> Sizes { get; set; }
+        public DbSet<ProductSize> ProductSizes { get; set; }
      
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -28,6 +31,9 @@ namespace ProgrammingClass4.MvcLesson.Data
                 .HasKey(productCategory => new { productCategory.ProductId, productCategory.CategoryId });
             builder.Entity<ProductColor>()
                 .HasKey(productColor => new { productColor.ProductId, productColor.ColorId });
+            builder.Entity<ProductSize>()
+                .HasKey(productSize => new {productSize.ProductId, productSize.SizeId });
+
         }
     }
 }

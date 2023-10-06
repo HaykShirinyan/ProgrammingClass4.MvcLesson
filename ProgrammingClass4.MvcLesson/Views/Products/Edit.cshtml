@@ -106,7 +106,12 @@
    <div class="mb-3">
         <a asp-controller="ProductColors" asp-action="Index" asp-route-productId="@Model.Id">
         Colors
-    </a>
+        </a>
+   </div>
+   <div class="mb-3">
+       <a asp-controller="ProductSizes" asp-action="Index" asp-route-productId="@Model.Id">
+           Sizes
+       </a>
    </div>
     <button class="btn btn-primary">
         Save
