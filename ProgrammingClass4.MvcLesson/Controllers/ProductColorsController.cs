@@ -35,7 +35,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
             _dbContext.ProductColors.Add(productColor);
             _dbContext.SaveChanges();
 
-            return RedirectToAction("Index", new { productId = productColor.ProductId });//?
+            return RedirectToAction("Index", new { productId = productColor.ProductId });// pakagcum grac arajin productId da indexi verevum grac productId
         }
     }
 }

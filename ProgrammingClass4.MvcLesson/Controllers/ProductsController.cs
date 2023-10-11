@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProgrammingClass4.MvcLesson.Data;
 using ProgrammingClass4.MvcLesson.Models;
-using Microsoft.EntityFrameworkCore;
+using ProgrammingClass4.MvcLesson.ViewModels;
 
 namespace ProgrammingClass4.MvcLesson.Controllers
 {
@@ -36,67 +36,73 @@ namespace ProgrammingClass4.MvcLesson.Controllers
             // ViewBagi mijocov enq anum vorovhetev mer @model@ Productsa,voch te ProdutsList,es depqum @model@ chi karox ham products linel ham el ProductsList
             //xosq@ gnum e Creat Viewi meji @modeli masin
 
+            var productViewModel = new ProductViewModel
+            {
+                ProductTypes = _dbContext.ProductType.ToList(),
+            };
+
+
             ViewBag.Manufacturers = _dbContext.Manufacturers.ToList();
-            ViewBag.ProductTypes = _dbContext.ProductType.ToList();
             ViewBag.UnitOfMeasures = _dbContext.UnitOfMeasures.ToList();
 
-            return View();
+            return View(productViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Product product)
+        public IActionResult Create(ProductViewModel productViewModel)
         {
             if (ModelState.IsValid)
             {
-                _dbContext.Products.Add(product);
+                _dbContext.Products.Add(productViewModel.Product);
                 _dbContext.SaveChanges();
 
                 return RedirectToAction("Index");
             }
-            ViewBag.ProductTypes = _dbContext.ProductType.ToList();
+            productViewModel.ProductTypes = _dbContext.ProductType.ToList();
+
             ViewBag.UnitOfMeasures = _dbContext.UnitOfMeasures.ToList();
 
             ViewBag.Manufacturers = _dbContext.Manufacturers.ToList();
 
-            return View(product);
+            return View(productViewModel);
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int id) // xndirner
         {
-            var product = _dbContext.Products.Find(id);
-
-            ViewBag.ProductTypes = _dbContext.ProductType.ToList();
-            ViewBag.UnitOfMeasures = _dbContext.UnitOfMeasures.ToList();
-
-            if (product != null)
+            var productViewModel = new ProductViewModel
             {
-                ViewBag.Manufacturers = _dbContext.Manufacturers.ToList();
+                Product = _dbContext.Products.Find(id),
+                ProductTypes = _dbContext.ProductType.ToList()
 
-                return View(product);
-            }
+            };
 
-            return NotFound();
+            ViewBag.UnitOfMeasures = _dbContext.UnitOfMeasures.ToList();
+            ViewBag.Manufacturers = _dbContext.Manufacturers.ToList();
+
+                return View(productViewModel);
+ 
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Product product)
+        public IActionResult Edit(ProductViewModel productViewModel)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) // validationi xndir kara lini
             {
-                _dbContext.Products.Update(product);
+                _dbContext.Products.Update(productViewModel.Product);
                 _dbContext.SaveChanges();
 
                 return RedirectToAction("Index");
             }
-            ViewBag.ProductTypes = _dbContext.ProductType.ToList();
-            ViewBag.UnitOfMeasures = _dbContext.UnitOfMeasures.ToList();
 
+            productViewModel.ProductTypes = _dbContext.ProductType.ToList();
+
+            ViewBag.UnitOfMeasures = _dbContext.UnitOfMeasures.ToList();
             ViewBag.Manufacturers = _dbContext.Manufacturers.ToList();
 
-            return View(product);
+            return View(productViewModel);
         }
     }
 }
