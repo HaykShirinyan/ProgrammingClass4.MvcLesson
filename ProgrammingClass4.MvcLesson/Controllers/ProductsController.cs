@@ -2,6 +2,8 @@
 using ProgrammingClass4.MvcLesson.Data;
 using ProgrammingClass4.MvcLesson.Models;
 using Microsoft.EntityFrameworkCore;
+using ProgrammingClass4.MvcLesson.ViewModels;
+using ProgrammingClass4.MvcLesson.Data.Migrations;
 
 namespace ProgrammingClass4.MvcLesson.Controllers
 {
@@ -30,31 +32,34 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.Manufacturers  = _dbContext.Manufacturers.ToList();
-           
-            ViewBag.ProductTypes   = _dbContext.ProductTypes.ToList();
-            ViewBag.UnitOfMeasures = _dbContext .UnitOfMeasures.ToList();
-            return View();
+            var productViewModel = new ProductViewModel
+            {
+                Manufacturers = _dbContext.Manufacturers.ToList(),
+                ProductTypes = _dbContext.ProductTypes.ToList(),
+                UnitOfMeasures = _dbContext.UnitOfMeasures.ToList(),
+            };
+            
+            return View(productViewModel);
         }
 
         [HttpPost]
-        public IActionResult Create(Product product)
+        public IActionResult Create(ProductViewModel productViewModel)
         {
             if(ModelState.IsValid)
             {
-                _dbContext.Products.Add(product);
+                _dbContext.Products.Add(productViewModel.Product);
                 _dbContext.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Manufacturers = _dbContext.Manufacturers.ToList();
+            productViewModel.Manufacturers = _dbContext.Manufacturers.ToList();
             
-            ViewBag.ProductTypes =_dbContext.ProductTypes.ToList();
+            productViewModel.ProductTypes =_dbContext.ProductTypes.ToList();
 
-            ViewBag.UnitOfMeasures =_dbContext.UnitOfMeasures.ToList();
+            productViewModel.UnitOfMeasures =_dbContext.UnitOfMeasures.ToList();
 
-            return View(product);
+            return View(productViewModel);
         }
 
         [HttpGet]
@@ -64,36 +69,37 @@ namespace ProgrammingClass4.MvcLesson.Controllers
 
             if (product != null)
             {
-                ViewBag.Manufacturers = _dbContext.Manufacturers.ToList();
-
-                ViewBag.ProductTypes = _dbContext.ProductTypes.ToList();
-
-                ViewBag.UnitOfMeasures = _dbContext.UnitOfMeasures.ToList();
-
-                return View(product);
+                var productViewModel = new ProductViewModel
+                {
+                    Product = product,
+                    ProductTypes = _dbContext.ProductTypes.ToList(),
+                    Manufacturers = _dbContext.Manufacturers.ToList(),
+                    UnitOfMeasures = _dbContext.UnitOfMeasures.ToList(),
+                };
+                return View(productViewModel);
             }
 
             return NotFound();
         }
 
         [HttpPost]
-        public IActionResult Edit(Product product)
+        public IActionResult Edit(ProductViewModel productViewModel)
         {
             if (ModelState.IsValid)
             {
-                _dbContext.Products.Update(product);
+                _dbContext.Products.Update(productViewModel.Product);
                 _dbContext.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Manufacturers = _dbContext.Manufacturers.ToList();
+            productViewModel.Manufacturers = _dbContext.Manufacturers.ToList();
 
-            ViewBag.ProductTypes = _dbContext.ProductTypes.ToList();
+            productViewModel.ProductTypes = _dbContext.ProductTypes.ToList();
 
-            ViewBag.UnitOfMeasures = _dbContext.UnitOfMeasures.ToList();
+            productViewModel.UnitOfMeasures = _dbContext.UnitOfMeasures.ToList();
 
-            return View(product);
+            return View(productViewModel);
         }
     }
 }
