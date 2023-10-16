@@ -69,7 +69,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int id) // xndirner
+        public IActionResult Edit(int id) // 
         {
             var productViewModel = new ProductViewModel
             {
@@ -89,7 +89,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(ProductViewModel productViewModel)
         {
-            if (ModelState.IsValid) // validationi xndir kara lini
+            if (ModelState.IsValid) // 
             {
                 _dbContext.Products.Update(productViewModel.Product);
                 _dbContext.SaveChanges();
@@ -101,6 +101,17 @@ namespace ProgrammingClass4.MvcLesson.Controllers
 
             ViewBag.UnitOfMeasures = _dbContext.UnitOfMeasures.ToList();
             ViewBag.Manufacturers = _dbContext.Manufacturers.ToList();
+
+            return View(productViewModel);
+        }
+
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            var productViewModel = new ProductViewModel
+            {
+                Product = _dbContext.Products.Find(id),
+            };
 
             return View(productViewModel);
         }

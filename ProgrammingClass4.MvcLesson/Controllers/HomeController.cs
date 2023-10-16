@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ProgrammingClass4.MvcLesson.Data;
 using ProgrammingClass4.MvcLesson.Models;
 using System.Diagnostics;
 
@@ -8,14 +10,22 @@ namespace ProgrammingClass4.MvcLesson.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private ApplicationDbContext _dbContext;
+
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext dbContext)
         {
             _logger = logger;
+            _dbContext = dbContext;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            List<Product> products = _dbContext
+                .Products
+                .ToList();
+
+            return View(products);
         }
 
         public IActionResult Privacy()
