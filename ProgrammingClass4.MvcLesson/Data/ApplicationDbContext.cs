@@ -15,6 +15,7 @@ namespace ProgrammingClass4.MvcLesson.Data
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<ProductColor> ProductColors { get; set; }
+        public DbSet<ShoppingCart> shoppingCarts { get; set; }
         
            
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
