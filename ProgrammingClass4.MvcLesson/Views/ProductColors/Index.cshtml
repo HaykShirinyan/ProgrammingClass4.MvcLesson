@@ -1,14 +1,14 @@
-﻿@model List<ProductColor>
+﻿@model ProductColorViewModel
 
 @{
         ViewData["Title"] = "Product Colors";
  }
  
  <h1 class="h2">
-     @ViewBag.Product.Name Colors
+     @Model.Product.Name Colors
  </h1>
  <form asp-controller="ProductColors" asp-action="Create">
-     <input type="hidden" name="ProductId" value="@ViewBag.Product.Id" />
+     <input type="hidden" name="ProductId" value="@Model.Product.Id" />
     <div class="mb-3">
         <label for="color-id" class="form-label">
             Select Color
@@ -16,7 +16,7 @@
         <div class="input-group">
             <select id="color-id" name="ColorId" class="form-control">
                 <option> -- Please Select--</option>
-                @foreach (var color in ViewBag.Colors as List<Color>)
+                @foreach (var color in Model.Colors)
                 {
                     <option value="@color.Id">
                         @color.Name
@@ -44,7 +44,7 @@
          </tr>
      </thead>
      <tbody>
-        @foreach(var productColor in Model)
+        @foreach(var productColor in Model.ProductColors)
         {
             <tr>
                 <td>

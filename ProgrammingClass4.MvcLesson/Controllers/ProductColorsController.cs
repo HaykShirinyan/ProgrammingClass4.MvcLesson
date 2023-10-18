@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProgrammingClass4.MvcLesson.Data;
 using ProgrammingClass4.MvcLesson.Models;
+using ProgrammingClass4.MvcLesson.ViewModels;
 
 namespace ProgrammingClass4.MvcLesson.Controllers
 {
@@ -25,10 +26,14 @@ namespace ProgrammingClass4.MvcLesson.Controllers
                 .Where(productColor => productColor.ProductId == productId)
                 .ToList();
 
-            ViewBag.Product = _dbContext.Products.Find(productId);
-            ViewBag.Colors = _dbContext.Colors.ToList();
+            var productColorViewModel = new ProductColorViewModel
+            {
+                Product = _dbContext.Products.Find(productId),
+                Colors = _dbContext.Colors.ToList(),
+                ProductColors = productColors,
+            };
             
-            return View(productColors);
+            return View(productColorViewModel);
         }
 
         [HttpPost]
