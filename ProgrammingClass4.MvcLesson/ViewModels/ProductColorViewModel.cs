@@ -10,7 +10,5 @@ namespace ProgrammingClass4.MvcLesson.ViewModels
         public List<Color>? Colors { get; set;}
         public List<ProductColor>? ProductColors { get; set;}
         public ProductColor ProductColor { get; set; }
-
     }
-   
 }

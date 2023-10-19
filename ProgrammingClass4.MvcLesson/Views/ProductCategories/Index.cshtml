@@ -10,7 +10,7 @@
     </h1>
 
     <form asp-controller="ProductCategories" asp-action="Create">
-        <input type="hidden" name="ProductId" value="@Model.Product.Id" />
+        <input type="hidden" name="ProductCategory.ProductId" value="@Model.Product.Id" />
 
         <div class="mb-3">
             <label for="category-id" class="form-label">
@@ -18,7 +18,7 @@
             </label>
 
             <div class="input-group">
-                <select id="category-id" name="CategoryId" class="form-control">
+                <select id="category-id" name="ProductCategory.CategoryId" class="form-control">
                     <option>-- Please Select --</option>
 
                     @foreach (var category in Model.Categories)

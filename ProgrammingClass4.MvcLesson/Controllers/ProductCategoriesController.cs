@@ -32,18 +32,16 @@ namespace ProgrammingClass4.MvcLesson.Controllers
                 ProductCategories = productCategories,
                 Product = _dbContext.Products.Find(productId),
                 Categories = _dbContext.Categories.ToList(),
-                
             };
             return View(productCategoryViewModel);
         }
 
         [HttpPost]
-        public IActionResult Create(ProductCategory productCategory) 
+        public IActionResult Create(ProductCategoryViewModel productCategoryViewModel) 
         {
-            _dbContext.ProductCategories.Add(productCategory);
+            _dbContext.ProductCategories.Add(productCategoryViewModel.ProductCategory);
             _dbContext.SaveChanges();
-
-            return RedirectToAction("Index", new { productId = productCategory.ProductId });
+            return RedirectToAction("Index", new { productId =productCategoryViewModel.ProductCategory.ProductId });
         }
     }
 }

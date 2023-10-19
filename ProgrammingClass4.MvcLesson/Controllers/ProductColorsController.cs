@@ -37,11 +37,11 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(ProductColor productColor)
+        public IActionResult Create(ProductColorViewModel productColorViewModel)
         {
-            _dbContext.ProductColors.Add(productColor);
+            _dbContext.ProductColors.Add(productColorViewModel.ProductColor);
             _dbContext.SaveChanges();
-            return RedirectToAction("Index", new {productId =  productColor.ProductId});
+            return RedirectToAction("Index", new {productId =  productColorViewModel.ProductColor.ProductId});
         }
     }
 }

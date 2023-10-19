@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProgrammingClass4.MvcLesson.Data;
 using ProgrammingClass4.MvcLesson.Models;
+using ProgrammingClass4.MvcLesson.ViewModels;
 
 namespace ProgrammingClass4.MvcLesson.Controllers
 {
@@ -23,19 +24,24 @@ namespace ProgrammingClass4.MvcLesson.Controllers
                 .Include(productSize=> productSize.Size)
                 .Where(productSize=> productSize.ProductId == productId)
                 .ToList();
-           
-            ViewBag.Product = _dbContext.Products.Find(productId);
-            ViewBag.Sizes   = _dbContext.Sizes.ToList();
-           
-            return View(productSizes);
+            
+            var productSizeViewModel = new ProductSizeViewModel
+            {
+                Product = _dbContext.Products.Find(productId),
+                Sizes = _dbContext.Sizes.ToList(),
+                ProductSizes = productSizes
+            };
+
+            return View(productSizeViewModel);
         }
 
         [HttpPost]
-        public IActionResult Create(ProductSize productSize)
+        public IActionResult Create(ProductSizeViewModel productSizeViewModel)
         {
-            _dbContext.ProductSizes.Add(productSize);
-            _dbContext.SaveChanges();
-            return RedirectToAction("Index",  new {productId = productSize.ProductId});
+           _dbContext.ProductSizes.Add(productSizeViewModel.ProductSize);
+           _dbContext.SaveChanges();
+            return RedirectToAction("Index", new { productId = productSizeViewModel.ProductSize.ProductId });
         }
+  
     }
 }

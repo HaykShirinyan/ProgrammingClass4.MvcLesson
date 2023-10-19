@@ -8,13 +8,13 @@
      @Model.Product.Name Colors
  </h1>
  <form asp-controller="ProductColors" asp-action="Create">
-     <input type="hidden" name="ProductId" value="@Model.Product.Id" />
+     <input type="hidden" name="ProductColor.ProductId" value="@Model.Product.Id" />
     <div class="mb-3">
         <label for="color-id" class="form-label">
             Select Color
         </label>
         <div class="input-group">
-            <select id="color-id" name="ColorId" class="form-control">
+            <select id="color-id" name="ProductColor.ColorId" class="form-control">
                 <option> -- Please Select--</option>
                 @foreach (var color in Model.Colors)
                 {
