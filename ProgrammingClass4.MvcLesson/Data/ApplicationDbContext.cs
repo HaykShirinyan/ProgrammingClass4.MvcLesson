@@ -16,6 +16,7 @@ namespace ProgrammingClass4.MvcLesson.Data
         public DbSet<Color> Colors { get; set; }
         public DbSet<ProductColor> ProductColors { get; set; }
         public DbSet<ShoppingCart> shoppingCarts { get; set; }
+        public DbSet<ProductShoppingCart> ProductShoppingCarts { get; set; }
         
            
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -31,6 +32,9 @@ namespace ProgrammingClass4.MvcLesson.Data
                 .HasKey(productCategory => new { productCategory.ProductId, productCategory.CategoryId });
             builder.Entity<ProductColor>()
                 .HasKey(productColor => new { productColor.ProductId, productColor.ColorId });
+            builder.Entity<ProductShoppingCart>()
+                .HasKey(productShoppingCart => new { productShoppingCart.ProductId, productShoppingCart.ShoppingCartId });
+
         }
     }
 }
