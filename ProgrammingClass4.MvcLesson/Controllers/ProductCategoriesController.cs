@@ -28,7 +28,6 @@ namespace ProgrammingClass4.MvcLesson.Controllers
             
             var productCategoryViewModel = new ProductCategoryViewModel
             {
-
                 ProductCategories = productCategories,
                 Product = _dbContext.Products.Find(productId),
                 Categories = _dbContext.Categories.ToList(),
