@@ -2,6 +2,7 @@
 using ProgrammingClass4.MvcLesson.Data;
 using ProgrammingClass4.MvcLesson.Models;
 using Microsoft.EntityFrameworkCore;
+using ProgrammingClass4.MvcLesson.ViewModels;
 
 namespace ProgrammingClass4.MvcLesson.Controllers
 {
@@ -28,24 +29,28 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.Manufacturers = _dbContext.Manufacturers.ToList();
-            return View();
+            var productViewModel = new ProductViewModel
+            {
+                Manufacturers = _dbContext.Manufacturers.ToList()
+            };
+
+            return View(productViewModel);
         }
 
         [HttpPost]
-        public IActionResult Create(Product product)
+        public IActionResult Create(ProductViewModel productViewModel)
         {
             if (ModelState.IsValid)
             {
-                _dbContext.Products.Add(product);
+                _dbContext.Products.Add(productViewModel.Product);
                 _dbContext.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Manufacturers = _dbContext.Manufacturers.ToList();
+            productViewModel.Manufacturers = _dbContext.Manufacturers.ToList();
 
-            return View(product);
+            return View(productViewModel);
         }
 
         [HttpGet]
@@ -55,28 +60,32 @@ namespace ProgrammingClass4.MvcLesson.Controllers
 
             if (product != null)
             {
-                ViewBag.Manufacturers = _dbContext.Manufacturers.ToList();
+                var productViewModel = new ProductViewModel
+                {
+                    Product = product,
+                    Manufacturers = _dbContext.Manufacturers.ToList()
+                };
 
-                return View(product);
+                return View(productViewModel);
             }
 
             return NotFound();
         }
 
         [HttpPost]
-        public IActionResult Edit(Product product)
+        public IActionResult Edit(ProductViewModel productViewModel)
         {
             if (ModelState.IsValid)
             {
-                _dbContext.Products.Update(product);
+                _dbContext.Products.Update(productViewModel.Product);
                 _dbContext.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Manufacturers = _dbContext.Manufacturers.ToList();
+            productViewModel.Manufacturers = _dbContext.Manufacturers.ToList();
 
-            return View(product);
+            return View(productViewModel.Product);
         }
     }
 }

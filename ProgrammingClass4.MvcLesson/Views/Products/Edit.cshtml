@@ -1,4 +1,4 @@
-﻿@model Product
+﻿@model ProductViewModel
 
 <h1 class="h2">
     Edit Product
@@ -8,60 +8,60 @@
     <div class="row">
         <div class="col-md-6">
             <div class="mb-3">
-                <label asp-for="Id" class="form-label">
+                <label asp-for="Product.Id" class="form-label">
                     ID
                 </label>
-                <input asp-for="Id" class="form-control" readonly />
+                <input asp-for="Product.Id" class="form-control" readonly />
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="mb-3">
-                <label asp-for="Name" class="form-label">
+                <label asp-for="Product.Name" class="form-label">
                     Name
                 </label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <input asp-for="Product.Name" class="form-control" />
+                <span asp-validation-for="Product.Name" class="text-danger"></span>
             </div>
         </div>
     </div>
 
     <div class="mb-3">
-        <label asp-for="Description" class="form-label">
+        <label asp-for="Product.Description" class="form-label">
             Description
         </label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
+        <textarea asp-for="Product.Description" class="form-control"></textarea>
+        <span asp-validation-for="Product.Description" class="text-danger"></span>
     </div>
 
     <div class="row">
         <div class="col-md-6">
             <div class="mb-3">
-                <label asp-for="Quantity" class="form-label">
+                <label asp-for="Product.Quantity" class="form-label">
                     Quantity
                 </label>
-                <input asp-for="Quantity" class="form-control" />
+                <input asp-for="Product.Quantity" class="form-control" />
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="mb-3">
-                <label asp-for="UnitPrice" class="form-label">
+                <label asp-for="Product.UnitPrice" class="form-label">
                     Unit Price
                 </label>
-                <input asp-for="UnitPrice" class="form-control" />
+                <input asp-for="Product.UnitPrice" class="form-control" />
             </div>
         </div>
     </div>
 
     <div class="mb-3">
-        <label asp-for="ManufacturerId" class="form-label">
+        <label asp-for="Product.ManufacturerId" class="form-label">
             Manufacturer
         </label>
-        <select asp-for="ManufacturerId" class="form-control">
+        <select asp-for="Product.ManufacturerId" class="form-control">
             <option value="">-- Please Select --</option>
 
-            @foreach (var manufacturer in ViewBag.Manufacturers as List<Manufacturer>)
+            @foreach (var manufacturer in Model.Manufacturers)
             {
                 <option value="@manufacturer.Id">
                     @manufacturer.Name
@@ -71,7 +71,7 @@
     </div>
 
     <div class="mb-3">
-        <a asp-controller="ProductCategories" asp-action="Index" asp-route-productId="@Model.Id">
+        <a asp-controller="ProductCategories" asp-action="Index" asp-route-productId="@Model.Product.Id">
             Categories
         </a>
     </div>
