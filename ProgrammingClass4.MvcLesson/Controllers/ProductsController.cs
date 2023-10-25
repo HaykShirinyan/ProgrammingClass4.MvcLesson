@@ -69,7 +69,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int id) // 
+        public IActionResult Edit(int id) 
         {
             var productViewModel = new ProductViewModel
             {

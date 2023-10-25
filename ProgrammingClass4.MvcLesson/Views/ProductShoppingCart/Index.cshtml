@@ -1,0 +1,65 @@
+﻿@model List<ProductShoppingCart>
+
+    <div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Unit Price
+                </th>
+                <th>
+                    Manufacturer
+                </th>
+                <th>
+                    Type
+                </th>
+                <th>
+                    Unit 0f measure
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var productShoppingCart in Model)
+            {
+                <tr>
+                    <td>
+                        @productShoppingCart.Product.Id
+                    </td>
+                    <td>
+                        @productShoppingCart.Product.Name
+                    </td>
+                    <td>
+                        @productShoppingCart.Product.Description
+                    </td>
+                    <td>
+                        @productShoppingCart.Product.Quantity
+                    </td>
+                    <td>
+                        @productShoppingCart.Product.UnitPrice
+                    </td>
+                    <td>
+                        @productShoppingCart.Product.Manufacturer
+                    </td>
+                    <td>
+                        @productShoppingCart.Product.Type
+                    </td>
+                    <td>
+                        @productShoppingCart.Product.UnitOfMeasure
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </div>
