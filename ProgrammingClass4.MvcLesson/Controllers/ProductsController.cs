@@ -111,6 +111,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
             var productViewModel = new ProductViewModel
             {
                 Product = _dbContext.Products.Find(id),
+                CartCount = TempData.ContainsKey("CartCount") ? (int)TempData["CartCount"] : 0
             };
 
             return View(productViewModel);

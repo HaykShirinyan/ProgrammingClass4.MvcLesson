@@ -4,6 +4,7 @@ using ProgrammingClass4.MvcLesson.Data;
 using ProgrammingClass4.MvcLesson.Data.Migrations;
 using ProgrammingClass4.MvcLesson.Models;
 using System.Security.Claims;
+using System.Security.Principal;
 using ProductShoppingCart = ProgrammingClass4.MvcLesson.Models.ProductShoppingCart;
 
 namespace ProgrammingClass4.MvcLesson.Controllers
@@ -63,10 +64,14 @@ namespace ProgrammingClass4.MvcLesson.Controllers
                 _dbContext.ProductShoppingCarts.Add(productShoppingCart);
                 _dbContext.SaveChanges();
 
-                return RedirectToAction("Index");
+                TempData["CartCount"] = _dbContext.ProductShoppingCarts
+                .Count(cartItem => cartItem.ShoppingCart.UserId == userId);
+
+                return RedirectToAction("Details", "Products", new { id = productId });
             }
 
-                 return RedirectToAction("Index");
+                return RedirectToAction("Details", "Products");
+
         }
     }
 

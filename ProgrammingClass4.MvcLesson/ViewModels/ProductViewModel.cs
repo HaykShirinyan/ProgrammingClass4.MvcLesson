@@ -8,7 +8,7 @@ namespace ProgrammingClass4.MvcLesson.ViewModels
         [Required]
         public Product? Product { get; set; }
         public List<ProductType>? ProductTypes { get; set; }
-       
+        public int CartCount { get; set; }
 
     }
 }

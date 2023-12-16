@@ -41,23 +41,17 @@
 
     </style>
 
-</head>
-
-<body>
-
     <div class="shopping-cart">
-        <a asp-controller="ProductShoppingCart" asp-action="Index" asp-route-productId="@Model.Product.Id" class="fa fa-shopping-cart">
-            
+        <a asp-controller="ProductShoppingCart" asp-action="Index" class="fa fa-shopping-cart">
+            <span class="item-count">@Model.CartCount</span>
         </a>
-       
-
-        <span class="item-count">3</span>
-
     </div>
 
-</body>
+</head>
 
 </html>
+
+
 
 
 
@@ -140,6 +134,7 @@
             Colors
         </a>
     </div>
+   
     <input type="hidden" asp-for="Product.Id" />
 
     <div>
