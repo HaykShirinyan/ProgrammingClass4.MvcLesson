@@ -89,7 +89,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(ProductViewModel productViewModel)
         {
-            if (ModelState.IsValid) // 
+            if (ModelState.IsValid) //  
             {
                 _dbContext.Products.Update(productViewModel.Product);
                 _dbContext.SaveChanges();

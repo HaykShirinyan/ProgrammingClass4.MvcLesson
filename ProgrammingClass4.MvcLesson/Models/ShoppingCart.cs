@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using ProgrammingClass4.MvcLesson.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProgrammingClass4.MvcLesson.Models
 {
@@ -13,5 +15,7 @@ namespace ProgrammingClass4.MvcLesson.Models
 
         [StringLength(500)]
         public string? Description { get; set; }
+        public string? UserId {  get; set; }
+        public IdentityUser? User { get; set; }
     }
 }

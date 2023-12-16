@@ -4,7 +4,64 @@
     Details
 </h1>
 
-<form asp-controller="Products" asp-action="Details">
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shopping Cart Icon</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <style>
+
+        .shopping-cart {
+            position: relative;
+            display: inline-block;
+            font-size: 24px;
+            color: #000;
+        }
+
+        .item-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 5px;
+            font-size: 12px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="shopping-cart">
+        <a asp-controller="ProductShoppingCart" asp-action="Index" asp-route-productId="@Model.Product.Id" class="fa fa-shopping-cart">
+            
+        </a>
+       
+
+        <span class="item-count">3</span>
+
+    </div>
+
+</body>
+
+</html>
+
+
+
+<form id="add-to-cart-form" asp-controller="ProductShoppingCart" asp-action="AddToCart" asp-route-productId="@Model.Product.Id" method="post">
 
     <div class="row">
         <div class="col-md-6">
@@ -83,8 +140,11 @@
             Colors
         </a>
     </div>
+    <input type="hidden" asp-for="Product.Id" />
 
-    <button class="btn btn-primary">
-        Save
-    </button>
+    <div>
+        <button type="submit" class="btn btn-primary">
+            Add to cart
+        </button>
+    </div>
 </form>
