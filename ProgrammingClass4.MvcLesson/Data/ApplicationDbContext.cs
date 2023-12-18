@@ -17,6 +17,11 @@ namespace ProgrammingClass4.MvcLesson.Data
         public DbSet<ProductColor> ProductColors { get; set; }
         public DbSet<Size> Sizes { get; set; }
         public DbSet<ProductSize> ProductSizes { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<CartColor> CartColors { get; set; }
+        public DbSet<ShoppingCartColor> ShoppingCartColors { get; set; }
+        public DbSet<ShoppingCartSize> ShoppingCartSizes { get; set; }
      
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -33,7 +38,12 @@ namespace ProgrammingClass4.MvcLesson.Data
                 .HasKey(productColor => new { productColor.ProductId, productColor.ColorId });
             builder.Entity<ProductSize>()
                 .HasKey(productSize => new {productSize.ProductId, productSize.SizeId });
-
+            builder.Entity<CartColor>()
+                .HasKey(cartColor => new { cartColor.CartItemId, cartColor.ColorId });
+            builder.Entity<ShoppingCartColor>()
+                .HasKey(shoppingCartColor => new { shoppingCartColor.ShoppingCartId, shoppingCartColor.ColorId });
+            builder.Entity<ShoppingCartSize>()
+                .HasKey(shoppingCartSize => new {shoppingCartSize.ShoppingCartId, shoppingCartSize.SizeId});
         }
     }
 }

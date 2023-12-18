@@ -1,0 +1,66 @@
+﻿@model ShoppingCartColorViewModel
+
+<form asp-controller="ShoppingCartColors" asp-action="Create">
+    <input type="hidden" name="ShoppingCartColor.ShoppingCartId" value="@Model.ShoppingCart.Id" />
+    <div class="mb-3">
+        <label for="color-id" class="form-label">
+            Select Color
+        </label>
+        <div class="input-group">
+            <select id="color-id" name="ShoppingCartColor.ColorId" class="form-control">
+                <option> -- Please Select--</option>
+                @foreach (var color in Model.Colors)
+                {
+                    <option value="@color.Id">
+                        @color.Name
+                    </option>
+                }
+            </select>
+            <button class="btn btn-primary">
+                Save
+            </button>
+            
+        </div>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var shoppingCartColor in Model.ShoppingCartColors)
+        {
+            <tr>
+                
+                <td>
+                    @shoppingCartColor.Color.Name
+                </td>
+                <td>
+                    <form asp-controller="ShoppingCartColors" asp-action="RemoveItem" method="post">
+                        <input type="hidden" name="shoppingCartId" value="@shoppingCartColor.ShoppingCartId" />
+                        <input type="hidden" name="colorId" value="@shoppingCartColor.ColorId" />
+                        <button type="submit" class="btn btn-danger">
+                            Remove
+                        </button>
+                    </form>
+
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+
+
+
+
+

@@ -27,5 +27,9 @@ namespace ProgrammingClass4.MvcLesson.Models
         public int? MeasureId { get; set; }
 
         public UnitOfMeasure? Measure { get; set; }
+
+        public ICollection<ProductCategory> ProductCategories { get; set; }
+        public ICollection<ProductColor> ProductColors { get; set; }
+        public ICollection<ProductSize> ProductSizes { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProgrammingClass4.MvcLesson.Data;
 
@@ -11,9 +12,11 @@ using ProgrammingClass4.MvcLesson.Data;
 namespace ProgrammingClass4.MvcLesson.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231116131826_NewCartItem")]
+    partial class NewCartItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -224,21 +227,6 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.CartColor", b =>
-                {
-                    b.Property<int>("CartItemId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ColorId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CartItemId", "ColorId");
-
-                    b.HasIndex("ColorId");
-
-                    b.ToTable("CartColors");
-                });
-
             modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.CartItem", b =>
                 {
                     b.Property<int>("Id")
@@ -247,7 +235,7 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ColorId")
+                    b.Property<int>("ColorId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
@@ -259,12 +247,12 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                     b.Property<int>("ShoppingCartId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SizeId")
+                    b.Property<int>("SizeId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -275,8 +263,6 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                     b.HasIndex("ShoppingCartId");
 
                     b.HasIndex("SizeId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("CartItems");
                 });
@@ -485,36 +471,6 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                     b.ToTable("ShoppingCarts");
                 });
 
-            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.ShoppingCartColor", b =>
-                {
-                    b.Property<int>("ShoppingCartId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ColorId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ShoppingCartId", "ColorId");
-
-                    b.HasIndex("ColorId");
-
-                    b.ToTable("ShoppingCartColors");
-                });
-
-            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.ShoppingCartSize", b =>
-                {
-                    b.Property<int>("ShoppingCartId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SizeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ShoppingCartId", "SizeId");
-
-                    b.HasIndex("SizeId");
-
-                    b.ToTable("ShoppingCartSizes");
-                });
-
             modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.Size", b =>
                 {
                     b.Property<int>("Id")
@@ -612,30 +568,13 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.CartColor", b =>
+            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.CartItem", b =>
                 {
-                    b.HasOne("ProgrammingClass4.MvcLesson.Models.CartItem", "CartItem")
-                        .WithMany()
-                        .HasForeignKey("CartItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ProgrammingClass4.MvcLesson.Models.Color", "Color")
                         .WithMany()
                         .HasForeignKey("ColorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("CartItem");
-
-                    b.Navigation("Color");
-                });
-
-            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.CartItem", b =>
-                {
-                    b.HasOne("ProgrammingClass4.MvcLesson.Models.Color", "Color")
-                        .WithMany()
-                        .HasForeignKey("ColorId");
 
                     b.HasOne("ProgrammingClass4.MvcLesson.Models.Product", "Product")
                         .WithMany()
@@ -651,11 +590,7 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
 
                     b.HasOne("ProgrammingClass4.MvcLesson.Models.Size", "Size")
                         .WithMany()
-                        .HasForeignKey("SizeId");
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("SizeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -666,8 +601,6 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                     b.Navigation("ShoppingCart");
 
                     b.Navigation("Size");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.Product", b =>
@@ -757,44 +690,6 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.ShoppingCartColor", b =>
-                {
-                    b.HasOne("ProgrammingClass4.MvcLesson.Models.Color", "Color")
-                        .WithMany()
-                        .HasForeignKey("ColorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProgrammingClass4.MvcLesson.Models.ShoppingCart", "ShoppingCart")
-                        .WithMany()
-                        .HasForeignKey("ShoppingCartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Color");
-
-                    b.Navigation("ShoppingCart");
-                });
-
-            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.ShoppingCartSize", b =>
-                {
-                    b.HasOne("ProgrammingClass4.MvcLesson.Models.ShoppingCart", "ShoppingCart")
-                        .WithMany()
-                        .HasForeignKey("ShoppingCartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProgrammingClass4.MvcLesson.Models.Size", "Size")
-                        .WithMany()
-                        .HasForeignKey("SizeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ShoppingCart");
-
-                    b.Navigation("Size");
                 });
 
             modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.Product", b =>

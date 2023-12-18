@@ -1,0 +1,60 @@
+﻿@model ShoppingCartSizeViewModel
+
+<form asp-controller="ShoppingCartSizes" asp-action="Create">
+    <input type="hidden" name="ShoppingCartSize.ShoppingCartId" value="@Model.ShoppingCart.Id" />
+    <div class="mb-3">
+        <label for="size-id" class="form-label">
+            Select Size
+        </label>
+        <div class="input-group">
+            <select id="size-id" name="ShoppingCartSize.SizeId" class="form-control">
+                <option> -- Please Select--</option>
+                @foreach (var size in Model.Sizes)
+                {
+                    <option value="@size.Id">
+                        @size.Name
+                    </option>
+                }
+            </select>
+            <button class="btn btn-primary">
+                Save
+            </button>
+            
+        </div>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var shoppingCartSize in Model.ShoppingCartSizes)
+        {
+            <tr>
+                
+                <td>
+                    @shoppingCartSize.Size.Name
+                </td>
+                <td>
+                    <form asp-controller="ShoppingCartSizes" asp-action="RemoveItem" method="post">
+                        <input type="hidden" name="shoppingCartId" value="@shoppingCartSize.ShoppingCartId" />
+                        <input type="hidden" name="sizeId" value="@shoppingCartSize.SizeId" />
+                        <button type="submit" class="btn btn-danger">
+                            Remove
+                        </button>
+                    </form>
+
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+
+</table>

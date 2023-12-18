@@ -1,0 +1,11 @@
+﻿@model ShoppingCartViewModel
+
+<h1>Remove Item from Cart</h1>
+<p>Are you sure you want to remove this item from your cart?</p>
+<p>Product Name: @Model.Product.Name</p>
+
+<form asp-controller="ShoppingCarts" asp-action="RemoveFromCart" asp-route-cartItemId="@Model.CartItemId" method="post">
+    <button type="submit">Remove Item</button>
+</form>
+
+<a asp-action="Index">Cancel</a>

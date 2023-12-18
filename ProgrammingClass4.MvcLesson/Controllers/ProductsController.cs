@@ -9,7 +9,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
 {
     public class ProductsController : Controller
     {
-        private ApplicationDbContext _dbContext;
+        private readonly ApplicationDbContext _dbContext;
 
         public ProductsController(ApplicationDbContext dbContext)
         {
@@ -32,7 +32,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            var productViewModel = new ProductViewModel
+            var productViewModel = new CreateProductViewModel
             {
                 Manufacturers = _dbContext.Manufacturers.ToList(),
                 ProductTypes = _dbContext.ProductTypes.ToList(),
@@ -43,7 +43,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(ProductViewModel productViewModel)
+        public IActionResult Create(CreateProductViewModel productViewModel)
         {
             if(ModelState.IsValid)
             {
@@ -69,7 +69,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
 
             if (product != null)
             {
-                var productViewModel = new ProductViewModel
+                var productViewModel = new CreateProductViewModel
                 {
                     Product = product,
                     ProductTypes = _dbContext.ProductTypes.ToList(),
@@ -83,7 +83,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(ProductViewModel productViewModel)
+        public IActionResult Edit(CreateProductViewModel productViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -102,4 +102,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
             return View(productViewModel);
         }
     }
+
+
+
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProgrammingClass4.MvcLesson.Data;
 
@@ -11,9 +12,11 @@ using ProgrammingClass4.MvcLesson.Data;
 namespace ProgrammingClass4.MvcLesson.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231207130210_ShoppingCartColors")]
+    partial class ShoppingCartColors
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -500,21 +503,6 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                     b.ToTable("ShoppingCartColors");
                 });
 
-            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.ShoppingCartSize", b =>
-                {
-                    b.Property<int>("ShoppingCartId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SizeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ShoppingCartId", "SizeId");
-
-                    b.HasIndex("SizeId");
-
-                    b.ToTable("ShoppingCartSizes");
-                });
-
             modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.Size", b =>
                 {
                     b.Property<int>("Id")
@@ -776,25 +764,6 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                     b.Navigation("Color");
 
                     b.Navigation("ShoppingCart");
-                });
-
-            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.ShoppingCartSize", b =>
-                {
-                    b.HasOne("ProgrammingClass4.MvcLesson.Models.ShoppingCart", "ShoppingCart")
-                        .WithMany()
-                        .HasForeignKey("ShoppingCartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProgrammingClass4.MvcLesson.Models.Size", "Size")
-                        .WithMany()
-                        .HasForeignKey("SizeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ShoppingCart");
-
-                    b.Navigation("Size");
                 });
 
             modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.Product", b =>

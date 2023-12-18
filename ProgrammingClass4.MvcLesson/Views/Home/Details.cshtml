@@ -1,0 +1,72 @@
+﻿@model ProductViewModel
+
+ <h1>Product Details</h1>
+    <div>
+    <h2>@Model.Product.Name</h2>
+    <h5>Description: @Model.Product.Description</h5>
+     <h5>Price: @Model.Product.UnitPrice</h5>
+    </div>
+  <div class="mb-3">
+    <label asp-for="Product.ProductTypeId" class="form-label"> Product Type:</label>
+    <select asp-for="Product.ProductTypeId" class="form-control" disabled>
+        <option value="">Select a product type</option>
+        @foreach (var productType in Model.ProductTypes)
+        {
+            <option value="@productType.Id">@productType.Name </option>
+        }
+    </select>
+  </div>
+  <div class="mb-3">
+    <label asp-for="Product.ManufacturerId" class="form-label">Manufacturer:</label>
+    <select asp-for="Product.ManufacturerId" class="form-control" disabled>
+        <option value="">Select a manufacturer</option>
+        @foreach (var manufacturer in Model.Manufacturers)
+        {
+            <option value="@manufacturer.Id">@manufacturer.Name</option>
+        }
+    </select>
+  </div>
+  <div class="mb-3">
+    <label asp-for="Product.MeasureId" class="form-label">Unit of Measure:</label>
+    <select asp-for="Product.MeasureId" class="form-control" disabled>
+        <option value="">Select a unit of measure</option>
+        @foreach (var unitOfMeasure in Model.UnitOfMeasures)
+        {
+            <option value="@unitOfMeasure.Id">@unitOfMeasure.Name</option>
+        }
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label asp-for="Color" class="form-label">Colors:</label>
+    <select asp-for="SelectedColorId" class="form-control">
+        <option value="">Select a Color</option>
+        @foreach (var color in Model.Colors)
+        {
+            <option value="@color.Id">@color.Name</option>
+        }
+    </select>
+</div>
+<div class="mb-3">
+    <label asp-for="Sizes" class="form-label">Sizes:</label>
+    <select asp-for="SelectedSizeId" class="form-control">
+        <option value="">Select a Size</option>
+        @foreach (var size in Model.Sizes)
+        {
+            <option value="@size.Id">@size.Name</option>
+        }
+    </select>
+</div>
+
+<form asp-controller="ShoppingCarts" asp-action="AddToCart">
+    <input type="hidden" name="productId" value="@Model.Product.Id" />
+    <button type="submit" class="btn btn-primary">Add to Cart</button>
+</form>
+
+
+
+
+        
+        
+
+

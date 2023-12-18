@@ -1,0 +1,73 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ProgrammingClass4.MvcLesson.Data;
+using ProgrammingClass4.MvcLesson.Data.Migrations;
+using ProgrammingClass4.MvcLesson.Models;
+using ProgrammingClass4.MvcLesson.ViewModels;
+
+namespace ProgrammingClass4.MvcLesson.Controllers
+{
+    
+    public class ShoppingCartColorsController : Controller
+    {
+        private readonly ApplicationDbContext _dbContext;
+
+        public ShoppingCartColorsController(ApplicationDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
+        [HttpGet]
+        public IActionResult Index(int shoppingCartId)
+        {
+           var shoppingCartColors = _dbContext
+                .ShoppingCartColors
+                .Include(shoppingCartColor=>shoppingCartColor.Color)
+                .Where(shoppingCartColor =>  shoppingCartColor.ShoppingCartId == shoppingCartId )
+                .ToList();
+
+            var shoppingCartColorViewModel = new ShoppingCartColorViewModel
+            {
+                ShoppingCart = _dbContext.ShoppingCarts.Find(shoppingCartId),
+                Colors = _dbContext.Colors.ToList(),
+                ShoppingCartColors = shoppingCartColors,
+            };
+
+            return View(shoppingCartColorViewModel);
+        }
+        
+        [HttpPost]
+        public IActionResult Create(ShoppingCartColorViewModel shoppingCartColorViewModel)
+        {
+            var existingColor = _dbContext.ShoppingCartColors
+                 .FirstOrDefault(s => s.ShoppingCartId == shoppingCartColorViewModel.ShoppingCartColor.ShoppingCartId);
+
+            if (existingColor != null) 
+            {
+                return RedirectToAction("Index", new { shoppingCartId = shoppingCartColorViewModel.ShoppingCartColor.ShoppingCartId });
+            }
+
+            _dbContext.ShoppingCartColors.Add(shoppingCartColorViewModel.ShoppingCartColor);
+            _dbContext.SaveChanges();
+
+            return RedirectToAction("Index", new {shoppingCartId = shoppingCartColorViewModel.ShoppingCartColor.ShoppingCartId });
+        }
+
+        [HttpPost]
+        public IActionResult RemoveItem(int shoppingCartId, int colorId)
+        {
+            var shoppingCartColor = _dbContext.ShoppingCartColors
+                .FirstOrDefault(s => s.ShoppingCartId == shoppingCartId && s.ColorId == colorId );
+
+            if (shoppingCartColor != null)
+            {
+                _dbContext.ShoppingCartColors.Remove(shoppingCartColor);
+                _dbContext.SaveChanges();
+            }
+
+            return RedirectToAction("Index", new { shoppingCartId });
+
+        }
+
+    }
+}

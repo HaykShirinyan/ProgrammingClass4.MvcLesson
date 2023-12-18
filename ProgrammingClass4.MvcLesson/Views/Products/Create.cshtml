@@ -1,10 +1,10 @@
-﻿@model ProductViewModel
+﻿@model CreateProductViewModel
 
 <h1 class="h2">
     Create Product
 </h1>
 
-<form asp-controller="Products" asp-action="Create">
+<form asp-controller="Products" asp-action="Create" method="post">
     <div class="mb-3">
         <label asp-for="Product.Name" class="form-label">
             Name

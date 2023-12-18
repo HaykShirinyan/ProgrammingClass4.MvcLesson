@@ -1,0 +1,98 @@
+﻿@model List<ShoppingCartViewModel>
+
+<h1 class="mb-5">
+    Shopping Cart
+</h1>
+
+<table class="table mb-5">
+    <thead>
+        <tr>
+            <th>
+               Name
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+               UnitPrice
+            </th>
+            <th>
+                View Colors
+            </th>
+            <th>
+                View Sizes
+            </th>
+            <th>
+                Selected Color
+            </th>
+            <th>
+                Selected Size
+            </th>
+            
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Product.Name
+                </td>
+                <td>
+                    <input type="number" name="quantity" class="form-control" value="@item.Quantity" min="1" readonly />
+                </td>
+                <td>
+                    @item.Product.UnitPrice
+                </td>
+
+                <td>
+                    <a asp-controller="ShoppingCarts" asp-action="ViewColors" asp-route-shoppingCartId="@item.CartItemId">View Colors</a>
+                </td>
+                <td>
+                    <a asp-controller="ShoppingCarts" asp-action="ViewSizes" asp-route-shoppingCartId="@item.CartItemId">View Sizes</a>
+                </td>
+                <td>
+                    @item.SelectedColorName
+                    <span asp-validation-for="@item.SelectedColorName" class="text-danger"></span>
+                </td>
+                <td>
+                    @item.SelectedSizeName
+                    <span asp-validation-for="@item.SelectedSizeName" class="text-danger"></span>
+                </td>
+                <td>
+                    <form asp-controller="ShoppingCarts" asp-action="RemoveFromCart">
+                       <input type="hidden" name="cartItemId" value="@item.CartItemId" />
+                       <button type="submit"class="btn btn-primary">Remove</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="mb-3 shopping-cart-summary">
+    <h1>Shopping Cart Summary:</h1>
+    <p>
+        <span class="font-weight-bold">Number of Products:</span> @Model.Count item(s)
+    </p>
+    <p>
+        <span class="font-weight-bold">Total Price:</span> <span class="h3">@Model.Sum(item => item.Quantity * item.Product.UnitPrice)</span>
+    </p>
+</div>
+
+<div class="mb-3">
+    <form asp-controller="ShoppingCarts" asp-action="Buy">
+        <button type="submit" class="btn btn-success btn-buy-now">Buy Now</button>
+    </form>
+</div>
+
+@if (TempData.ContainsKey("BuyMessage"))
+{
+    <div class="alert alert-success">
+        @TempData["BuyMessage"]
+    </div>
+}
+
