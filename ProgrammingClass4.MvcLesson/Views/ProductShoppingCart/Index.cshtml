@@ -1,6 +1,6 @@
 ﻿@model List<ProductShoppingCart>
 
-    <div>
+<div>
     <table class="table">
         <thead>
             <tr>
@@ -26,7 +26,10 @@
                     Type
                 </th>
                 <th>
-                    Unit 0f measure
+                    Unit of Measure
+                </th>
+                <th>
+                    Remove
                 </th>
             </tr>
         </thead>
@@ -59,7 +62,14 @@
                     <td>
                         @productShoppingCart.Product.UnitOfMeasure
                     </td>
+                    <td>
+                        <form asp-controller="ProductShoppingCart" asp-action="RemoveFromCart" asp-route-productId="@productShoppingCart.Product.Id" method="post">
+                            <input type="hidden" name="productId" value="@productShoppingCart.Product.Id" />
+                            <button type="submit" class="btn btn-danger">Remove</button>
+                        </form>
+                    </td>
                 </tr>
             }
         </tbody>
-    </div>
+    </table>
+</div>

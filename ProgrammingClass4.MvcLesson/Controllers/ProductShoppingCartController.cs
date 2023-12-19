@@ -33,7 +33,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         }
 
 
-        [HttpPost("{productId}")]
+        [HttpPost("AddToCart/{productId}")]
         public IActionResult AddToCart(int productId)
         {
 
@@ -72,6 +72,29 @@ namespace ProgrammingClass4.MvcLesson.Controllers
 
                 return RedirectToAction("Details", "Products");
 
+        }
+
+        [HttpPost("RemoveFromCart/{productId}")]
+        public IActionResult RemoveFromCart(int productId)
+        {
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+           
+            var productShoppingCart = _dbContext.ProductShoppingCarts
+                .FirstOrDefault(cartItem =>
+                    cartItem.ShoppingCart.UserId == userId &&
+                    cartItem.Product.Id == productId);
+
+            if (productShoppingCart != null)
+            {
+                _dbContext.ProductShoppingCarts.Remove(productShoppingCart);
+                _dbContext.SaveChanges();
+
+                TempData["CartCount"] = _dbContext.ProductShoppingCarts
+                    .Count(cartItem => cartItem.ShoppingCart.UserId == userId);
+            }
+
+            return RedirectToAction("Index");
         }
     }
 
