@@ -17,6 +17,15 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         [HttpGet]
         public IActionResult Index(int shoppingCartId)
         {
+            var shoppingCart = _dbContext.ShoppingCarts
+                .Include(cart => cart.Product)
+                .FirstOrDefault(cart => cart.Id == shoppingCartId);
+            
+            if (shoppingCart == null)
+            {
+                return NotFound();
+            }
+            
             var shoppingCartSizes = _dbContext.ShoppingCartSizes
                 .Include(shoppingCartSizes =>  shoppingCartSizes.Size)
                 .Where(shoppingCartSizes => shoppingCartSizes.ShoppingCartId == shoppingCartId)

@@ -12,5 +12,6 @@ namespace ProgrammingClass4.MvcLesson.ViewModels
         public int ColorId { get; set; }
         public int Id { get; set; }
         public string SelectedColorName { get; set; }
+        public int ProductId { get; set; }
     }
 }

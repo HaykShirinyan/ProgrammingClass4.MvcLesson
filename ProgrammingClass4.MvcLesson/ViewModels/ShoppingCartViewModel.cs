@@ -26,11 +26,7 @@ namespace ProgrammingClass4.MvcLesson.ViewModels
         public int SelectedColorId { get; set; }
         public int SelectedSizeId { get; set; }
         public ShoppingCartColor ShoppingCartColor { get; set; }
-        
-        [Required(ErrorMessage = "Please select a color.")]
         public string SelectedColorName { get; set; }
-        
-        [Required(ErrorMessage = "Please select a size.")]
         public ShoppingCartSize ShoppingCartSize { get; set; }
         public string SelectedSizeName { get; set; }
 

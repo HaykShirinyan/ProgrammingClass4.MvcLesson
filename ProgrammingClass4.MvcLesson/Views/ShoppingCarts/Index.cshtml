@@ -56,14 +56,13 @@
                 </td>
                 <td>
                     @item.SelectedColorName
-                    <span asp-validation-for="@item.SelectedColorName" class="text-danger"></span>
                 </td>
                 <td>
                     @item.SelectedSizeName
-                    <span asp-validation-for="@item.SelectedSizeName" class="text-danger"></span>
                 </td>
                 <td>
-                    <form asp-controller="ShoppingCarts" asp-action="RemoveFromCart">
+                    <form asp-controller="ShoppingCarts" asp-action="RemoveFromCart" asp-route-cartItemId="@item.CartItemId" method="post" 
+                    onsubmit="return confirm('Are you sure you want to remove this item from your cart?')">
                        <input type="hidden" name="cartItemId" value="@item.CartItemId" />
                        <button type="submit"class="btn btn-primary">Remove</button>
                     </form>
@@ -79,7 +78,8 @@
         <span class="font-weight-bold">Number of Products:</span> @Model.Count item(s)
     </p>
     <p>
-        <span class="font-weight-bold">Total Price:</span> <span class="h3">@Model.Sum(item => item.Quantity * item.Product.UnitPrice)</span>
+        <span class="font-weight-bold">Total Price:</span> 
+        <span class="h3">@Model.Sum(item => item.Quantity * item.Product.UnitPrice)</span>
     </p>
 </div>
 
@@ -95,4 +95,5 @@
         @TempData["BuyMessage"]
     </div>
 }
+
 

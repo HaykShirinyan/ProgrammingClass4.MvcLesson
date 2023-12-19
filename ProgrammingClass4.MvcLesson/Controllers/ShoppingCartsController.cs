@@ -41,21 +41,19 @@ namespace ProgrammingClass4.MvcLesson.Controllers
                    .Select(c => c.Color.Name)
                    .FirstOrDefault(),
                     SelectedSizeName = _dbContext.ShoppingCartSizes
-                    .Where(s => s.ShoppingCartId == cartItem.Id)
-                    .Select(s => s.Size.Name)
-                    .FirstOrDefault(),
+                   .Where(s => s.ShoppingCartId == cartItem.Id)
+                   .Select(s => s.Size.Name)
+                   .FirstOrDefault(),
                 })
                 .ToList();
 
             return View(cartItems);
         }
 
-
         [HttpPost]
         [Authorize]
         public IActionResult AddToCart(int productId)
         {
-          
             var product = _dbContext.Products.FirstOrDefault(p => p.Id == productId);
             
             if (product == null )
@@ -83,12 +81,11 @@ namespace ProgrammingClass4.MvcLesson.Controllers
                     Quantity = 1,
                 };
                 
-
                 _dbContext.ShoppingCarts.Add(newCartItem);
             }
             _dbContext.SaveChanges();
+            
             return RedirectToAction("Index");
-
         }
 
         [HttpPost]
@@ -119,8 +116,39 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         [Authorize]
         public IActionResult Buy()
         {
-            TempData["BuyMessage"] = "Congratulations! Your purchase is complete.";
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
+            var cartItems = _dbContext.ShoppingCarts
+                .Where(cartItem => cartItem.UserId == userId)
+                .ToList();
 
+            foreach (var cartItem in cartItems)
+            {
+                var color = _dbContext.ShoppingCartColors
+                    .Where(c => c.ShoppingCartId == cartItem.Id)
+                    .FirstOrDefault();
+
+                var size = _dbContext.ShoppingCartSizes
+                    .Where(s => s.ShoppingCartId == cartItem.Id)
+                    .FirstOrDefault();
+                var product = _dbContext.Products
+                    .Where(p => p.Id == cartItem.ProductId)
+                   .FirstOrDefault();
+
+                if (color == null)
+                {
+                    TempData["BuyMessage"] = $"Please select a color for {product.Name}";
+                    return RedirectToAction("Index");
+                }
+
+                if (size == null)
+                {
+                    TempData["BuyMessage"] = $"Please select a size for {product.Name}";
+                    return RedirectToAction("Index");
+                }
+            }
+
+            TempData["BuyMessage"] = "Congratulations! Your purchase is complete.";
             return RedirectToAction("Index");
         }
     }

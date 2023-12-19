@@ -20,7 +20,16 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         [HttpGet]
         public IActionResult Index(int shoppingCartId)
         {
-           var shoppingCartColors = _dbContext
+            var shoppingCart = _dbContext.ShoppingCarts
+                .Include(cart => cart.Product)
+                .FirstOrDefault(cart => cart.Id == shoppingCartId);
+
+            if (shoppingCart == null)
+            {
+                return NotFound();
+            }
+
+            var shoppingCartColors = _dbContext
                 .ShoppingCartColors
                 .Include(shoppingCartColor=>shoppingCartColor.Color)
                 .Where(shoppingCartColor =>  shoppingCartColor.ShoppingCartId == shoppingCartId )

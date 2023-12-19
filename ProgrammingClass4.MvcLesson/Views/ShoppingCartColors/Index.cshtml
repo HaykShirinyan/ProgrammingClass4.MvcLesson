@@ -1,5 +1,9 @@
 ﻿@model ShoppingCartColorViewModel
 
+<h1>
+    @Model.ShoppingCart.Product.Name Colors
+</h1>
+
 <form asp-controller="ShoppingCartColors" asp-action="Create">
     <input type="hidden" name="ShoppingCartColor.ShoppingCartId" value="@Model.ShoppingCart.Id" />
     <div class="mb-3">
@@ -46,7 +50,7 @@
                     <form asp-controller="ShoppingCartColors" asp-action="RemoveItem" method="post">
                         <input type="hidden" name="shoppingCartId" value="@shoppingCartColor.ShoppingCartId" />
                         <input type="hidden" name="colorId" value="@shoppingCartColor.ColorId" />
-                        <button type="submit" class="btn btn-danger">
+                        <button type="submit" class="btn btn-primary">
                             Remove
                         </button>
                     </form>
