@@ -78,24 +78,24 @@
             </div>
 
             <div class="mb-3">
-                <label asp-for="Product.TypeID" class="form-label">
+                <label asp-for="Product.Type.Name" class="form-label">
                     Type
                 </label>
-                <input asp-for="Product.TypeID" class="form-control" readonly />
+                <input asp-for="Product.Type.Name" class="form-control" readonly />
             </div>
             <div>
-                <label asp-for="Product.UnitOfMeasureId" class="form-label">
+                <label asp-for="Product.UnitOfMeasure.Name" class="form-label">
                     Unit of measure
                 </label>
-                <input asp-for="Product.UnitOfMeasureId" class="form-control" readonly />
+                <input asp-for="Product.UnitOfMeasure.Name" class="form-control" readonly />
             </div>
         </div>
 
         <div class="mb-3">
-            <label asp-for="Product.ManufacturerId" class="form-label">
+            <label asp-for="Product.Manufacturer.Name" class="form-label">
                 Manufacturer
             </label>
-            <input asp-for="Product.ManufacturerId" class="form-control" readonly />
+            <input asp-for="Product.Manufacturer.Name" class="form-control" readonly />
         </div>
 
         <div class="mb-3">

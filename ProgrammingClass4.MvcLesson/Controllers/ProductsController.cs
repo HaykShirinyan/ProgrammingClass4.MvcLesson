@@ -110,7 +110,12 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         {
             var productViewModel = new ProductViewModel
             {
-                Product = _dbContext.Products.Find(id),
+                Product = _dbContext.Products
+                .Include(p => p.Type)
+                .Include(p => p.UnitOfMeasure)
+                .Include(p => p.Manufacturer)
+                .FirstOrDefault(p => p.Id == id),
+
                 CartCount = TempData.ContainsKey("CartCount") ? (int)TempData["CartCount"] : 0
             };
 
