@@ -26,6 +26,10 @@ namespace ProgrammingClass4.MvcLesson.Controllers
             var productShoppingCarts = _dbContext
                 .ProductShoppingCarts
                 .Include(productShoppingCart => productShoppingCart.Product)
+                .Include(productShoppingCart => productShoppingCart.Product.Manufacturer)
+                .Include(productShoppingCart => productShoppingCart.Product.Type)
+                .Include(productShoppingCart => productShoppingCart.Product.UnitOfMeasure)
+
                 .Where(productShoppingCart => productShoppingCart.ShoppingCart.UserId == userId)
                 .ToList();
 

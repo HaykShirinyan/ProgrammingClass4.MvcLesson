@@ -1,45 +1,24 @@
 ﻿@model ProductViewModel
 
-<h1 class="h2">
-    Details
-</h1>
-
-
 <!DOCTYPE html>
 
 <html lang="en">
 
-<head>
+   <head>
 
-    <meta charset="UTF-8">
+     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Shopping Cart Icon</title>
+     <title>Shopping Cart Icon</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+     <link rel="stylesheet" href="~/css/site.css">
 
-    <style>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+     
+   </head>
 
-        .shopping-cart {
-            position: relative;
-            display: inline-block;
-            font-size: 24px;
-            color: #000;
-        }
-
-        .item-count {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background-color: red;
-            color: white;
-            border-radius: 50%;
-            padding: 2px 5px;
-            font-size: 12px;
-        }
-
-    </style>
+   <body>
 
     <div class="shopping-cart">
         <a asp-controller="ProductShoppingCart" asp-action="Index" class="fa fa-shopping-cart">
@@ -47,95 +26,102 @@
         </a>
     </div>
 
-</head>
+    <h1 class="h2">
+        Details
+    </h1>
+    <form id="add-to-cart-form" asp-controller="ProductShoppingCart" asp-action="AddToCart" asp-route-productId="@Model.Product.Id" method="post">
 
-</html>
-
-<form id="add-to-cart-form" asp-controller="ProductShoppingCart" asp-action="AddToCart" asp-route-productId="@Model.Product.Id" method="post">
-
-    <div class="row">
-        <div class="col-md-6">
-            <div class="mb-3">
-                <label asp-for="Product.Id" class="form-label">
-                    Number
-                </label>
-                <input asp-for="Product.Id" class="form-control" readonly />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Product.Id" class="form-label">
+                        Number
+                    </label>
+                    <input asp-for="Product.Id" class="form-control" readonly />
+                </div>
             </div>
-        </div>
 
-        <div class="col-md-6">
-            <div class="mb-3">
-                <label asp-for="Product.Name" class="form-label">
-                    Name
-                </label>
-                <input asp-for="Product.Name" class="form-control" readonly />
-            </div>
-        </div>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="Product.Description" class="form-label">
-            Description
-        </label>
-        <Input asp-for="Product.Description" class="form-control" readonly />
-    </div>
-
-    <div class="row">
-        <div class="col-md-6">
-            <div class="mb-3">
-                <label asp-for="Product.Quantity" class="form-label">
-                    Quantity
-                </label>
-                <input asp-for="Product.Quantity" class="form-control" readonly />
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="mb-3">
-                <label asp-for="Product.UnitPrice" class="form-label">
-                    Unit Price
-                </label>
-                <input asp-for="Product.UnitPrice" class="form-control" readonly />
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Product.Name" class="form-label">
+                        Name
+                    </label>
+                    <input asp-for="Product.Name" class="form-control" readonly />
+                </div>
             </div>
         </div>
 
         <div class="mb-3">
-            <label asp-for="Product.TypeID" class="form-label">
-                Type
+            <label asp-for="Product.Description" class="form-label">
+                Description
             </label>
-            <input asp-for="Product.TypeID" class="form-control" readonly />
+            <Input asp-for="Product.Description" class="form-control" readonly />
         </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Product.Quantity" class="form-label">
+                        Quantity
+                    </label>
+                    <input asp-for="Product.Quantity" class="form-control" readonly />
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Product.UnitPrice" class="form-label">
+                        Unit Price
+                    </label>
+                    <input asp-for="Product.UnitPrice" class="form-control" readonly />
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Product.TypeID" class="form-label">
+                    Type
+                </label>
+                <input asp-for="Product.TypeID" class="form-control" readonly />
+            </div>
+            <div>
+                <label asp-for="Product.UnitOfMeasureId" class="form-label">
+                    Unit of measure
+                </label>
+                <input asp-for="Product.UnitOfMeasureId" class="form-control" readonly />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Product.ManufacturerId" class="form-label">
+                Manufacturer
+            </label>
+            <input asp-for="Product.ManufacturerId" class="form-control" readonly />
+        </div>
+
+        <div class="mb-3">
+            <a asp-controller="ProductCategories" asp-action="Index" asp-route-productId="@Model.Product.Id">
+                Categories
+            </a>
+        </div>
+        <div class="mb-3">
+            <a asp-controller="ProductColors" asp-action="index" asp-route-productId="@Model.Product.Id" class="btn btn-secondary">
+                Colors
+            </a>
+        </div>
+
+        <input type="hidden" asp-for="Product.Id" />
+
         <div>
-            <label asp-for="Product.UnitOfMeasureId" class="form-label">
-                Unit of measure
-            </label>
-            <input asp-for="Product.UnitOfMeasureId" class="form-control" readonly />
+            <button type="submit" class="btn btn-primary">
+                Add to cart
+            </button>
         </div>
-    </div>
 
-    <div class="mb-3">
-        <label asp-for="Product.ManufacturerId" class="form-label">
-            Manufacturer
-        </label>
-        <input asp-for="Product.ManufacturerId" class="form-control" readonly />
-    </div>
+    </form>
 
-    <div class="mb-3">
-        <a asp-controller="ProductCategories" asp-action="Index" asp-route-productId="@Model.Product.Id">
-            Categories
-        </a>
-    </div>
-    <div class="mb-3">
-        <a asp-controller="ProductColors" asp-action="index" asp-route-productId="@Model.Product.Id" class="btn btn-secondary">
-            Colors
-        </a>
-    </div>
-   
-    <input type="hidden" asp-for="Product.Id" />
 
-    <div>
-        <button type="submit" class="btn btn-primary">
-            Add to cart
-        </button>
-    </div>
-</form>
+   </body>
+
+
+</html>
+

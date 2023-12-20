@@ -54,13 +54,13 @@
                         @productShoppingCart.Product.UnitPrice
                     </td>
                     <td>
-                        @productShoppingCart.Product.Manufacturer
+                        @productShoppingCart.Product.Manufacturer.Name
                     </td>
                     <td>
-                        @productShoppingCart.Product.Type
+                        @productShoppingCart.Product.Type.Name
                     </td>
                     <td>
-                        @productShoppingCart.Product.UnitOfMeasure
+                        @productShoppingCart.Product.UnitOfMeasure.Name
                     </td>
                     <td>
                         <form asp-controller="ProductShoppingCart" asp-action="RemoveFromCart" asp-route-productId="@productShoppingCart.Product.Id" method="post">
