@@ -2,6 +2,7 @@
 using ProgrammingClass4.MvcLesson.Data;
 using Microsoft.EntityFrameworkCore;
 using ProgrammingClass4.MvcLesson.Models;
+using ProgrammingClass4.MvcLesson.Data.Migrations;
 
 namespace ProgrammingClass4.MvcLesson.Controllers
 {
@@ -29,13 +30,29 @@ namespace ProgrammingClass4.MvcLesson.Controllers
             return View(productColors);
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public IActionResult Create(ProductColor productColor)
         {
             _dbContext.ProductColors.Add(productColor);
             _dbContext.SaveChanges();
 
             return RedirectToAction("Index", new { productId = productColor.ProductId });// pakagcum grac arajin productId da indexi verevum grac productId
+        }
+
+        [HttpPost("Remove")]
+        public IActionResult Remove(int productColorId)
+        {
+            var productColorToRemove = _dbContext.ProductColors
+         .FirstOrDefault(pc => pc.ProductId == productColorId);
+
+
+            if (productColorToRemove != null)
+            {
+                _dbContext.ProductColors.Remove(productColorToRemove);
+                _dbContext.SaveChanges();
+            }
+
+            return RedirectToAction("Index", new { productId = productColorToRemove?.ProductId });
         }
     }
 }

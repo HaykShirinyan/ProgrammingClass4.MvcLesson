@@ -30,13 +30,28 @@ namespace ProgrammingClass4.MvcLesson.Controllers
             return View(productCategories);
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public IActionResult Create(ProductCategory productCategory) 
         {
             _dbContext.ProductCategories.Add(productCategory);
             _dbContext.SaveChanges();
 
             return RedirectToAction("Index", new { productId = productCategory.ProductId });
+        }
+
+        [HttpPost("Remove")]
+        public IActionResult Remove(int productCategoryId)
+        {
+            var productCategoryToRemove = _dbContext.ProductCategories
+                .FirstOrDefault(pc => pc.ProductId == productCategoryId);
+
+            if (productCategoryToRemove != null)
+            {
+                _dbContext.ProductCategories.Remove(productCategoryToRemove);
+                _dbContext.SaveChanges();
+            }
+
+            return RedirectToAction("Index", new { productId = productCategoryToRemove?.ProductId });
         }
     }
 }
