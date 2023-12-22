@@ -131,6 +131,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
                 var size = _dbContext.ShoppingCartSizes
                     .Where(s => s.ShoppingCartId == cartItem.Id)
                     .FirstOrDefault();
+               
                 var product = _dbContext.Products
                     .Where(p => p.Id == cartItem.ProductId)
                    .FirstOrDefault();

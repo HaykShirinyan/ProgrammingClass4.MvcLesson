@@ -61,8 +61,8 @@
                     @item.SelectedSizeName
                 </td>
                 <td>
-                    <form asp-controller="ShoppingCarts" asp-action="RemoveFromCart" asp-route-cartItemId="@item.CartItemId" method="post" 
-                    onsubmit="return confirm('Are you sure you want to remove this item from your cart?')">
+                    <form asp-controller="ShoppingCarts" asp-action="RemoveFromCart" asp-route-cartItemId="@item.CartItemId"
+                       onsubmit="return confirm('Are you sure you want to remove this item from your cart?')">
                        <input type="hidden" name="cartItemId" value="@item.CartItemId" />
                        <button type="submit"class="btn btn-primary">Remove</button>
                     </form>
