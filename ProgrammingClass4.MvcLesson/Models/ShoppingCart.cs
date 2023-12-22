@@ -12,6 +12,5 @@ namespace ProgrammingClass4.MvcLesson.Models
         
         public int ProductId { get; set; }
         public Product Product { get; set; }
-
     }
 }

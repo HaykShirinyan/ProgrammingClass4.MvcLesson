@@ -80,11 +80,6 @@ namespace ProgrammingClass4.MvcLesson.Controllers
             }
 
             return NotFound();
-
-
-
-
-
         }
        
 

@@ -42,12 +42,11 @@
         @foreach (var shoppingCartColor in Model.ShoppingCartColors)
         {
             <tr>
-                
                 <td>
                     @shoppingCartColor.Color.Name
                 </td>
                 <td>
-                    <form asp-controller="ShoppingCartColors" asp-action="RemoveItem" method="post">
+                    <form asp-controller="ShoppingCartColors" asp-action="RemoveItem">
                         <input type="hidden" name="shoppingCartId" value="@shoppingCartColor.ShoppingCartId" />
                         <input type="hidden" name="colorId" value="@shoppingCartColor.ColorId" />
                         <button type="submit" class="btn btn-primary">
@@ -56,7 +55,6 @@
                     </form>
 
                 </td>
-                
             </tr>
         }
     </tbody>

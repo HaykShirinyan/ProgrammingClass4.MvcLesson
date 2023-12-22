@@ -42,12 +42,11 @@
         @foreach (var shoppingCartSize in Model.ShoppingCartSizes)
         {
             <tr>
-                
                 <td>
                     @shoppingCartSize.Size.Name
                 </td>
                 <td>
-                    <form asp-controller="ShoppingCartSizes" asp-action="RemoveItem" method="post">
+                    <form asp-controller="ShoppingCartSizes" asp-action="RemoveItem">
                         <input type="hidden" name="shoppingCartId" value="@shoppingCartSize.ShoppingCartId" />
                         <input type="hidden" name="sizeId" value="@shoppingCartSize.SizeId" />
                         <button type="submit" class="btn btn-primary">
@@ -56,7 +55,6 @@
                     </form>
 
                 </td>
-                
             </tr>
         }
     </tbody>

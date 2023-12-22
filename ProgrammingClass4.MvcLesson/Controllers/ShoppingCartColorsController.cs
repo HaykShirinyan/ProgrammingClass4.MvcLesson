@@ -75,8 +75,6 @@ namespace ProgrammingClass4.MvcLesson.Controllers
             }
 
             return RedirectToAction("Index", new { shoppingCartId });
-
         }
-
     }
 }
