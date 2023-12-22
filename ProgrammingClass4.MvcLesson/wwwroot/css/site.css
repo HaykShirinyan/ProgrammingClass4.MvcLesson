@@ -276,8 +276,8 @@ body {
 .shopping-cart-summary {
     margin-bottom: 20px;
     padding: 10px;
-    border: 1px solid #ccc; /* Optional: Add a border for visual separation */
-    border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
 }
 
 .shopping-cart-summary p {
