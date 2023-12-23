@@ -19,7 +19,7 @@ namespace ProgrammingClass4.MvcLesson.ViewModels
         public int SelectedSizeId { get; set;}
         public int CartItemId { get; set; }
         public int Quantity { get; set; }
-
+        public int Count { get; set; }
 
     }
 

@@ -34,10 +34,8 @@ namespace ProgrammingClass4.MvcLesson.Controllers
             {
                 Products = products
             };
-
-            
+           
             return View(productViewModel);
-
         }
 
         public IActionResult About() 
@@ -57,7 +55,7 @@ namespace ProgrammingClass4.MvcLesson.Controllers
 
         public IActionResult ShoppingCart()
         {
-                return View();
+            return View();
         }
 
         [HttpGet]

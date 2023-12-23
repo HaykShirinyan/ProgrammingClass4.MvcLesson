@@ -25,11 +25,10 @@ namespace ProgrammingClass4.MvcLesson.Controllers
 
         public IActionResult Index()
         {
-           
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var cartItems = _dbContext.ShoppingCarts
-            
+
                 .Where(cartItem => cartItem.UserId == userId)
                 .Select(cartItem => new ShoppingCartViewModel
                 {

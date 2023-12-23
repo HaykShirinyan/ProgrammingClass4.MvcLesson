@@ -29,7 +29,6 @@ namespace ProgrammingClass4.MvcLesson.ViewModels
         public string SelectedColorName { get; set; }
         public ShoppingCartSize ShoppingCartSize { get; set; }
         public string SelectedSizeName { get; set; }
-
     }
 
 }
