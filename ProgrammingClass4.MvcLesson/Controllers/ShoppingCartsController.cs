@@ -121,6 +121,12 @@ namespace ProgrammingClass4.MvcLesson.Controllers
                 .Where(cartItem => cartItem.UserId == userId)
                 .ToList();
 
+            if(cartItems.Count == 0)
+            {
+                TempData["BuyMessage"] = "Your shopping cart is empty. Please add items before proceeding";
+                return RedirectToAction("Index");
+            }
+
             foreach (var cartItem in cartItems)
             {
                 var color = _dbContext.ShoppingCartColors
@@ -140,7 +146,6 @@ namespace ProgrammingClass4.MvcLesson.Controllers
                     TempData["BuyMessage"] = $"Please select a color for {product.Name}";
                     return RedirectToAction("Index");
                 }
-
                 if (size == null)
                 {
                     TempData["BuyMessage"] = $"Please select a size for {product.Name}";

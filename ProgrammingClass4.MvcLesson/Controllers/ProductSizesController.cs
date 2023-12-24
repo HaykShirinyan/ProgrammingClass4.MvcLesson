@@ -42,6 +42,5 @@ namespace ProgrammingClass4.MvcLesson.Controllers
            _dbContext.SaveChanges();
             return RedirectToAction("Index", new { productId = productSizeViewModel.ProductSize.ProductId });
         }
-  
     }
 }
