@@ -1,14 +1,18 @@
 ﻿@model ShoppingCartColorViewModel
 
-<h1>
-    @Model.ShoppingCart.Product.Name Colors
-</h1>
+<div class="shopping-cart-container mb-3">
+    <h1>
+        @Model.ShoppingCart.Product.Name Colors
+    </h1>
+</div>
 
 <form asp-controller="ShoppingCartColors" asp-action="Create">
     <input type="hidden" name="ShoppingCartColor.ShoppingCartId" value="@Model.ShoppingCart.Id" />
     <div class="mb-3">
-        <label for="color-id" class="form-label">
-            Select Color
+        <label for="color-id" class="form-label mb-3">
+            <h2>
+                Select  Color
+            </h2>
         </label>
         <div class="input-group">
             <select id="color-id" name="ShoppingCartColor.ColorId" class="form-control">

@@ -1,14 +1,18 @@
 ﻿@model ShoppingCartSizeViewModel
 
-<h1>
-    @Model.ShoppingCart.Product.Name Sizes
-</h1>
+<div class="shopping-cart-container mb-3">
+    <h1>
+        @Model.ShoppingCart.Product.Name Sizes
+    </h1>
+</div>
 
 <form asp-controller="ShoppingCartSizes" asp-action="Create">
     <input type="hidden" name="ShoppingCartSize.ShoppingCartId" value="@Model.ShoppingCart.Id" />
     <div class="mb-3">
         <label for="size-id" class="form-label">
-            Select Size
+            <h2>
+                Select Size
+            </h2>
         </label>
         <div class="input-group">
             <select id="size-id" name="ShoppingCartSize.SizeId" class="form-control">
