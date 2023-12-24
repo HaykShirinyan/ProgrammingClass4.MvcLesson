@@ -252,25 +252,22 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-   
+    text-align:center;
 }
 
 .product{
     width:calc(33.33%);
     margin-bottom:20px;
     padding:10px;
-  
 }
 
 .online-shop {
     text-align: center;
-    margin: 30px;
-    
+    margin: 30px;  
 }
 
 .font-weight-bold {
     font-weight: bold;
-    
 }
 
 .shopping-cart-summary {
@@ -291,6 +288,6 @@ body {
 .shopping-cart-container {
     background: url('https://source.unsplash.com/1200x800/?shopping,retail') center;
     color: #fff;
-    padding: 80px; 
-    border-radius: 30px;
+    padding: 60px; 
+    border-radius: 60px;
 }
