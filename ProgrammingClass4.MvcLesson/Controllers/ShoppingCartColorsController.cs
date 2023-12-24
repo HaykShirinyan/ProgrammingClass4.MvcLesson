@@ -29,22 +29,28 @@ namespace ProgrammingClass4.MvcLesson.Controllers
                 return NotFound();
             }
 
+            var productColors = _dbContext.ProductColors
+                .Where(pc => pc.ProductId == shoppingCart.ProductId)
+                .Include(pc => pc.Color)
+                .Select(pc => pc.Color)
+                .ToList();
+
             var shoppingCartColors = _dbContext
                 .ShoppingCartColors
-                .Include(shoppingCartColor=>shoppingCartColor.Color)
-                .Where(shoppingCartColor =>  shoppingCartColor.ShoppingCartId == shoppingCartId )
+                .Include(shoppingCartColor => shoppingCartColor.Color)
+                .Where(shoppingCartColor => shoppingCartColor.ShoppingCartId == shoppingCartId)
                 .ToList();
 
             var shoppingCartColorViewModel = new ShoppingCartColorViewModel
             {
-                ShoppingCart = _dbContext.ShoppingCarts.Find(shoppingCartId),
-                Colors = _dbContext.Colors.ToList(),
+                ShoppingCart = shoppingCart,
+                Colors = productColors,
                 ShoppingCartColors = shoppingCartColors,
             };
 
             return View(shoppingCartColorViewModel);
         }
-        
+
         [HttpPost]
         public IActionResult Create(ShoppingCartColorViewModel shoppingCartColorViewModel)
         {

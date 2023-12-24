@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProgrammingClass4.MvcLesson.Data;
+using ProgrammingClass4.MvcLesson.Models;
 using ProgrammingClass4.MvcLesson.ViewModels;
 
 namespace ProgrammingClass4.MvcLesson.Controllers
@@ -18,24 +19,31 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         public IActionResult Index(int shoppingCartId)
         {
             var shoppingCart = _dbContext.ShoppingCarts
-                .Include(cart => cart.Product)
-                .FirstOrDefault(cart => cart.Id == shoppingCartId);
-            
+               .Include(cart => cart.Product)
+               .FirstOrDefault(cart => cart.Id == shoppingCartId);
+
             if (shoppingCart == null)
             {
                 return NotFound();
             }
-            
-            var shoppingCartSizes = _dbContext.ShoppingCartSizes
-                .Include(shoppingCartSizes =>  shoppingCartSizes.Size)
-                .Where(shoppingCartSizes => shoppingCartSizes.ShoppingCartId == shoppingCartId)
+
+            var productSizes = _dbContext.ProductSizes
+                .Where(pc => pc.ProductId == shoppingCart.ProductId)
+                .Include(pc => pc.Size)
+                .Select(pc => pc.Size)
+                .ToList();
+
+            var shoppingCartSize = _dbContext
+                .ShoppingCartSizes
+                .Include(shoppingCartSize => shoppingCartSize.Size)
+                .Where(shoppingCartSize => shoppingCartSize.ShoppingCartId == shoppingCartId)
                 .ToList();
 
             var shoppingCartSizeViewModel = new ShoppingCartSizeViewModel
             {
-                ShoppingCart = _dbContext.ShoppingCarts.Find(shoppingCartId),
-                Sizes = _dbContext.Sizes.ToList(),
-                ShoppingCartSizes = shoppingCartSizes,
+                ShoppingCart = shoppingCart,
+                Sizes = productSizes,
+                ShoppingCartSizes = shoppingCartSize,
             };
             
             return View(shoppingCartSizeViewModel);
