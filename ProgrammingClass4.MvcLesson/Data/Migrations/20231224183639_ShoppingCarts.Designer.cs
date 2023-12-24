@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProgrammingClass4.MvcLesson.Data;
 
@@ -11,9 +12,11 @@ using ProgrammingClass4.MvcLesson.Data;
 namespace ProgrammingClass4.MvcLesson.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231224183639_ShoppingCarts")]
+    partial class ShoppingCarts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -318,7 +321,7 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                     b.ToTable("ProductCategories");
                 });
 
-            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.ShoppingCartProduct", b =>
+            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.ShoppingCart", b =>
                 {
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -326,14 +329,11 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
                     b.HasKey("UserId", "ProductId");
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ShoppingCartProducts");
+                    b.ToTable("ShoppingCarts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -415,7 +415,7 @@ namespace ProgrammingClass4.MvcLesson.Data.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.ShoppingCartProduct", b =>
+            modelBuilder.Entity("ProgrammingClass4.MvcLesson.Models.ShoppingCart", b =>
                 {
                     b.HasOne("ProgrammingClass4.MvcLesson.Models.Product", "Product")
                         .WithMany()

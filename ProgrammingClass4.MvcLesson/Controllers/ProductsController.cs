@@ -87,5 +87,16 @@ namespace ProgrammingClass4.MvcLesson.Controllers
 
             return View(productViewModel.Product);
         }
+
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            var product = _dbContext
+                .Products
+                .Include(product => product.Manufacturer)
+                .Single(product => product.Id == id);
+
+            return View(product);
+        }
     }
 }

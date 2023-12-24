@@ -1,0 +1,27 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<div>
+    <h1>
+        @Model.Name
+    </h1>
+
+    <p>
+        @Model.Description
+    </p>
+
+    <p>
+        Price: <span> @Model.UnitPrice</span>
+    </p>
+
+    <form asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@Model.Id">
+
+        <button type="submit" class="btn btn-primary">
+            Add to Cart
+        </button>
+    </form>
+</div>
+

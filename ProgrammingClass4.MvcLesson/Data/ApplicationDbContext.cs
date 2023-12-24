@@ -10,6 +10,7 @@ namespace ProgrammingClass4.MvcLesson.Data
         public DbSet<Manufacturer> Manufacturers { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<ShoppingCartProduct> ShoppingCartProducts { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -22,6 +23,9 @@ namespace ProgrammingClass4.MvcLesson.Data
 
             builder.Entity<ProductCategory>()
                 .HasKey(productCategory => new { productCategory.ProductId, productCategory.CategoryId });
+
+            builder.Entity<ShoppingCartProduct>()
+                .HasKey(cart => new { cart.UserId, cart.ProductId });
         }
     }
 }

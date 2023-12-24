@@ -1,0 +1,48 @@
+﻿@model List<ShoppingCartProduct>
+
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var cartProduct in Model)
+        {
+            <tr>
+                <td>
+                    @cartProduct.Product.Name
+                </td>
+                <td>
+                    @cartProduct.Product.Description
+                </td>
+                <td>
+                    @cartProduct.Quantity
+                </td>
+                <td>
+                    <form asp-action="Delete" asp-route-id="@cartProduct.Product.Id">
+                        <button type="submit" class="btn btn-danger">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

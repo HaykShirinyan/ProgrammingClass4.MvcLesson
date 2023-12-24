@@ -58,6 +58,13 @@
                     @product.Manufacturer?.Name
                 </td>
                 <td>
+                    <a asp-controller="Products"
+                        asp-action="Details"
+                        asp-route-id="@product.Id"
+                        class="btn btn-secondary">
+                        Details
+                    </a>
+
                     <a asp-controller="Products" 
                         asp-action="Edit" 
                         asp-route-id="@product.Id"
