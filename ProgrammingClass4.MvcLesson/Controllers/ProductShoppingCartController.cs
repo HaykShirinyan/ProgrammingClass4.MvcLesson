@@ -29,53 +29,50 @@ namespace ProgrammingClass4.MvcLesson.Controllers
                 .Include(productShoppingCart => productShoppingCart.Product.Manufacturer)
                 .Include(productShoppingCart => productShoppingCart.Product.Type)
                 .Include(productShoppingCart => productShoppingCart.Product.UnitOfMeasure)
-
                 .Where(productShoppingCart => productShoppingCart.ShoppingCart.UserId == userId)
                 .ToList();
 
             return View(productShoppingCarts);
         }
 
-
         [HttpPost("AddToCart/{productId}")]
         public IActionResult AddToCart(int productId)
         {
-
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var product = _dbContext.Products.Find(productId);
 
-            if (product != null )
+            if (product != null)
             {
                 var shoppingCart = _dbContext.shoppingCarts.FirstOrDefault(cart => cart.UserId == userId);
 
-                if (shoppingCart == null)
+                var existingProductShoppingCart = _dbContext.ProductShoppingCarts
+                    .FirstOrDefault(cartItem =>
+                        cartItem.ShoppingCart.UserId == userId &&
+                        cartItem.Product.Id == productId);
+
+                if (existingProductShoppingCart == null)
                 {
-                    shoppingCart = new ShoppingCart
+                    var newProductShoppingCart = new ProductShoppingCart
                     {
-                        UserId = userId,
-                        Name = "Test cart"
+                        Product = product,
+                        ShoppingCart = shoppingCart
                     };
 
-                    _dbContext.shoppingCarts.Add(shoppingCart);
+                    _dbContext.ProductShoppingCarts.Add(newProductShoppingCart);
+                    _dbContext.SaveChanges();
+
+                    TempData["CartCount"] = _dbContext.ProductShoppingCarts
+                        .Count(cartItem => cartItem.ShoppingCart.UserId == userId);
+
+                    return RedirectToAction("Details", "Products", new { id = productId });
                 }
-
-                var productShoppingCart = new ProductShoppingCart
+                else
                 {
-                    Product = product,
-                    ShoppingCart = shoppingCart
-                };
-
-                _dbContext.ProductShoppingCarts.Add(productShoppingCart);
-                _dbContext.SaveChanges();
-
-                TempData["CartCount"] = _dbContext.ProductShoppingCarts
-                .Count(cartItem => cartItem.ShoppingCart.UserId == userId);
-
-                return RedirectToAction("Details", "Products", new { id = productId });
+                    return RedirectToAction("Details", "Products", new { id = productId });
+                }
             }
 
-                return RedirectToAction("Details", "Products");
-
+            return RedirectToAction("Details", "Products");
         }
 
         [HttpPost("RemoveFromCart/{productId}")]
@@ -83,7 +80,6 @@ namespace ProgrammingClass4.MvcLesson.Controllers
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-           
             var productShoppingCart = _dbContext.ProductShoppingCarts
                 .FirstOrDefault(cartItem =>
                     cartItem.ShoppingCart.UserId == userId &&

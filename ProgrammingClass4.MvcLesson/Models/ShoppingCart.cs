@@ -16,6 +16,6 @@ namespace ProgrammingClass4.MvcLesson.Models
         [StringLength(500)]
         public string? Description { get; set; }
         public string? UserId {  get; set; }
-        public IdentityUser? User { get; set; }
+       
     }
 }

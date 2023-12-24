@@ -6,12 +6,6 @@
 
    <head>
 
-     <meta charset="UTF-8">
-
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-     <title>Shopping Cart Icon</title>
-
      <link rel="stylesheet" href="~/css/site.css">
 
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -29,6 +23,7 @@
     <h1 class="h2">
         Details
     </h1>
+
     <form id="add-to-cart-form" asp-controller="ProductShoppingCart" asp-action="AddToCart" asp-route-productId="@Model.Product.Id" method="post">
 
         <div class="row">
@@ -109,8 +104,6 @@
             </a>
         </div>
 
-        <input type="hidden" asp-for="Product.Id" />
-
         <div>
             <button type="submit" class="btn btn-primary">
                 Add to cart
@@ -119,9 +112,7 @@
 
     </form>
 
-
    </body>
-
 
 </html>
 
