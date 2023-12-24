@@ -39,27 +39,6 @@
     </select>
   </div>
 
-  <div class="mb-3">
-    <label asp-for="Color" class="form-label">Colors:</label>
-    <select asp-for="SelectedColorId" class="form-control">
-        <option value="">Select a Color</option>
-        @foreach (var color in Model.Colors)
-        {
-            <option value="@color.Id">@color.Name</option>
-        }
-    </select>
-</div>
-<div class="mb-3">
-    <label asp-for="Sizes" class="form-label">Sizes:</label>
-    <select asp-for="SelectedSizeId" class="form-control">
-        <option value="">Select a Size</option>
-        @foreach (var size in Model.Sizes)
-        {
-            <option value="@size.Id">@size.Name</option>
-        }
-    </select>
-</div>
-
 <form asp-controller="ShoppingCarts" asp-action="AddToCart">
     <input type="hidden" name="productId" value="@Model.Product.Id" />
     <button type="submit" class="btn btn-primary">Add to Cart</button>
