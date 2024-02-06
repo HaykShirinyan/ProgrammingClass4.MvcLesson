@@ -71,6 +71,9 @@
                     @product.Measure?.Name
                 </td>
                 <td>
+                    <img class="iphone-15-pro-max" src="@product.ImageUrl" alt="@product.Name" />
+                </td>
+                <td>
                     <a asp-controller="Products" 
                         asp-action="Edit" 
                         asp-route-id="@product.Id"

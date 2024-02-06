@@ -34,7 +34,12 @@ namespace ProgrammingClass4.MvcLesson.Controllers
             {
                 Products = products
             };
-           
+
+            foreach (var product in products)
+            {
+                product.ImageUrl = $"/images/products/{product.Name.Replace(" ", "-").ToLower()}.jpg";
+            }
+
             return View(productViewModel);
         }
 
@@ -65,6 +70,8 @@ namespace ProgrammingClass4.MvcLesson.Controllers
 
             if (product != null)
             {
+                product.ImageUrl = $"/images/products/{product.Name.Replace(" ", "-").ToLower()}.jpg";
+
                 var productViewModel = new ProductViewModel
                 {
                     Product = product,
@@ -74,10 +81,12 @@ namespace ProgrammingClass4.MvcLesson.Controllers
                     Colors = _dbContext.Colors.ToList(),
                     Sizes = _dbContext.Sizes.ToList(),
                 };
+
                 return View(productViewModel);
             }
 
             return NotFound();
+
         }
        
 

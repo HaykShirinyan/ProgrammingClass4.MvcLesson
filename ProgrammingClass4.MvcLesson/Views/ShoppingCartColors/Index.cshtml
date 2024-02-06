@@ -5,6 +5,11 @@
         @Model.ShoppingCart.Product.Name Colors
     </h1>
 </div>
+<div class="mb-3">
+    <h1>
+        <img class="image-size" src="@Model.ShoppingCart.Product.ImageUrl" alt=" @Model.ShoppingCart.Product.Name" />
+    </h1>
+</div>
 
 <form asp-controller="ShoppingCartColors" asp-action="Create">
     <input type="hidden" name="ShoppingCartColor.ShoppingCartId" value="@Model.ShoppingCart.Id" />

@@ -28,7 +28,8 @@ namespace ProgrammingClass4.MvcLesson.Controllers
             {
                 return NotFound();
             }
-
+            shoppingCart.Product.ImageUrl = $"/images/products/{shoppingCart.Product.Name.Replace(" ", "-").ToLower()}.jpg";
+            
             var productColors = _dbContext.ProductColors
                 .Where(pc => pc.ProductId == shoppingCart.ProductId)
                 .Include(pc => pc.Color)

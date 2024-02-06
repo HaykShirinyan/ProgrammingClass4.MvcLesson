@@ -26,6 +26,11 @@ namespace ProgrammingClass4.MvcLesson.Controllers
                 .Include(product => product.Measure)
                 .ToList();
 
+            foreach(var product in products)
+            {
+                product.ImageUrl = $"/images/products/{product.Name.Replace(" ", "-").ToLower()}.jpg";
+            }
+
             return View(products);
         }
 

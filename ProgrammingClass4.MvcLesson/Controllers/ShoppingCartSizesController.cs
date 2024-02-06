@@ -26,6 +26,8 @@ namespace ProgrammingClass4.MvcLesson.Controllers
             {
                 return NotFound();
             }
+           
+            shoppingCart.Product.ImageUrl = $"/images/products/{shoppingCart.Product.Name.Replace(" ", "-").ToLower()}.jpg";
 
             var productSizes = _dbContext.ProductSizes
                 .Where(pc => pc.ProductId == shoppingCart.ProductId)

@@ -291,3 +291,12 @@ body {
     padding: 60px; 
     border-radius: 60px;
 }
+
+.iphone-15-pro-max{
+    width:100px;
+}
+
+.image-size {
+    width: 700px;
+    height: auto;
+}
