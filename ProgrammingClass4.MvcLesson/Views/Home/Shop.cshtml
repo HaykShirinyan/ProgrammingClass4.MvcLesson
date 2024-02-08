@@ -4,6 +4,11 @@
         WELCOME TO OUR ONLINE SHOP
     </h1>
 </div>
+<div class="mb-6">
+    <div class="video-container">
+        <iframe width="250" height="200" src="https://www.youtube.com/embed/YCIuEU2y8XI?si=zeNlF39OP3njI7lZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+</div>
 <div class="product-list">
     @foreach(var product in Model.Products)
     {
@@ -29,4 +34,8 @@
         </div>
     }
 </div>
+<form asp-controller="Home" asp-action="Search">
+    <input type="text" name="query" placeholder="Search products..." />
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
     

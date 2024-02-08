@@ -1,0 +1,26 @@
+﻿@model List<Product>
+<h3>
+    Search Results
+</h3>
+
+@foreach(var product in Model)
+{
+    <div>
+        <h1>
+            @product.Name
+        </h1>
+        <h5>
+            @product.Description
+        </h5>
+        <h5>
+            Price:$@product.UnitPrice
+        </h5>
+        <h5>
+            Quantity:@product.Quantity
+        </h5>
+        <a asp-controller="Home" asp-action="Details" asp-route-id="@product.Id">Details</a>
+        <h5>
+            <img class="image-size" src="@product.ImageUrl" alt="@product.Name" />
+        </h5> 
+    </div>
+}

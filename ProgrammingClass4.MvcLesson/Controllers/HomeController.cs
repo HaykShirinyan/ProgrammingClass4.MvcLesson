@@ -42,6 +42,20 @@ namespace ProgrammingClass4.MvcLesson.Controllers
 
             return View(productViewModel);
         }
+        
+        public IActionResult Search(string query)
+        {
+            var searchResults = _dbContext.Products
+                .Where(p => p.Name.Contains(query) || p.Description.Contains(query))
+                .ToList();
+            
+            foreach (var product in searchResults)
+            {
+                product.ImageUrl = $"/images/products/{product.Name.Replace(" ", "-").ToLower()}.jpg";
+            }
+           
+            return View(searchResults);
+        }
 
         public IActionResult About() 
         {
